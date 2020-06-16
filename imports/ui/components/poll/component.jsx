@@ -245,7 +245,7 @@ class Poll extends Component {
     } = this.props;
 
     return (
-      <div className="text-center">
+      <div>
         <div className={styles.instructions}>
           {intl.formatMessage(intlMessages.activePollInstruction)}
         </div>
@@ -267,7 +267,7 @@ class Poll extends Component {
     const { customPollReq } = this.state;
 
     return (
-      <div className="text-center">
+      <div>
         <div className={styles.instructions}>
           {intl.formatMessage(intlMessages.quickPollInstruction)}
         </div>
@@ -334,10 +334,19 @@ class Poll extends Component {
     return (
       <div>
         <header className={styles.header}>
-        
           <Button
             ref={(node) => { this.hideBtn = node; }}
             tabIndex={0}
+            label={intl.formatMessage(intlMessages.pollPaneTitle)}
+            icon="left_arrow"
+            aria-label={intl.formatMessage(intlMessages.hidePollDesc)}
+            className={styles.hideBtn}
+            onClick={() => {
+              Session.set('openPanel', 'userlist');
+            }}
+          />
+
+          <Button
             label={intl.formatMessage(intlMessages.closeLabel)}
             aria-label={`${intl.formatMessage(intlMessages.closeLabel)} ${intl.formatMessage(intlMessages.pollPaneTitle)}`}
             onClick={() => {

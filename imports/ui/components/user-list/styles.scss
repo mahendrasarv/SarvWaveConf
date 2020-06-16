@@ -86,11 +86,6 @@
   background-color: var(--user-list-bg);
   color: var(--user-list-text);
   height: 100%;
-   @include mq($small-only) {
-    padding:0px 15px;
-  }
-
-  &.userListMenu {background:#cc0000;}
 }
 
 .lists {
@@ -112,8 +107,8 @@
 .participantsList,
 .chatsList {
   @extend .lists;
-  /*overflow-x: hidden;*/
-  flex-shrink: 1; margin-bottom:15px;
+  overflow-x: hidden;
+  flex-shrink: 1;
 }
 
 .participants,
@@ -159,7 +154,7 @@
 .enterActive,
 .appearActive {
   opacity: 1;
-
+  
   :global(.animationsEnabled) & {
     transition: all 600ms;
   }
@@ -176,5 +171,3 @@
     transition: all 600ms;
   }
 }
-.userListMenu {display:flex; flex-direction: column; margin-bottom: 25px; margin-top: 0px; position: relative;}
-.tabheadingrow {display:flex; flex-direction: row;}

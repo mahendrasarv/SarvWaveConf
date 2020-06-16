@@ -22,7 +22,7 @@
   padding: 0.5rem 0;
 
   .audioBtn:first-child {
-    margin: 1rem 3rem 1rem 0;
+    margin: 0 3rem 0 0;
 
     [dir="rtl"] & {
       margin: 0 0 0 3rem;
@@ -51,7 +51,6 @@
   margin-bottom: auto;
   display: flex;
   justify-content: center;
-
 }
 
 .browserWarning {
@@ -103,65 +102,56 @@
   text-align: center;
   font-size: var(--font-size-large);
 }
-.circle {width:80px; height:80px;}
 
+.audioBtn {
+  i {
+    color: #3c5764;
+  }
+}
 
 .audioDial {
   margin: 0 auto;
   margin-top: var(--md-padding-y);
   display: block;
-
-  span {font-size:16px; font-weight:300;}
-
-  &:focus, &:hover {background-color:var(--color-primary) !important; color:var(--color-white) !important; opacity:1 !important;} 
 }
 
-.audioBtn {
-  
-  button {width:80px; height:80px;}
-
-}
-
-.audioBtn:first-child span:first-child {color: #2cc4b4;}
-.audioBtn:first-child span:last-child {color: #2cc4b4;}
-.audioBtn:last-child span:first-child {color: #f67d44;}
-.audioBtn:last-child span:last-child {color: #f67d44;}
 // Modifies the audio button icon colour
 .audioBtn span:first-child {
-border:2px solid transparent;
-  background-color: none; background:none;
+  color: #1b3c4b;
+  background-color: #f1f8ff;
   box-shadow: none;
-  font-size: 3rem; width:80px; height:80px; padding: 15px 0px 0px 0px;
+  border: 5px solid #f1f8ff;
+  font-size: 3.5rem;
+
   @include mq($small-only) {
     font-size: 2.5rem;
   }
 }
 
-
-
 // When hovering over a button of class audioBtn, change the border colour of first span-child
-.audioBtn:first-child:focus span:first-child, .audioBtn:first-child:hover span:first-child, .audioBtn:first-child:active span:first-child {border:2px solid #2cc4b4; background: #15131a; background-color: #15131a;}
-
-.audioBtn:last-child:focus span:first-child, .audioBtn:last-child:hover span:first-child, .audioBtn:last-child:active span:first-child {border:2px solid #f67d44; background: #15131a; background-color: #15131a;}
-
+.audioBtn:hover span:first-child,
+.audioBtn:focus span:first-child {
+  border: 5px solid var(--color-primary);
+  background-color: #f1f8ff;
+}
 
 // Modifies the button label text
 .audioBtn span:last-child {
-  
-  font-size: 1.4rem; background:none;
-  font-weight: 300;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .title {
   text-align: center;
- font-weight: 300;
-  font-size: 1.8rem;
-  color: var(--color-text-light-theme);
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--color-background);
   white-space: normal;
 
   @include mq($small-only) {
-    font-size: 1.3rem;
-    padding: 0 0rem;
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 }
 
@@ -197,8 +187,7 @@ border:2px solid transparent;
 }
 
 .audioNote {
-  color: var(--color-white);
+  color: var(--color-text);
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
-

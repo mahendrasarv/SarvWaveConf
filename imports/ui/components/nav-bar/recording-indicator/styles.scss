@@ -12,7 +12,7 @@
 
 %recordingControl {
   display: flex;
-  border-radius: 2rem 2rem;
+  border-radius: 2em 2em;
 
   span {
     border: none;
@@ -34,43 +34,27 @@
 
 .recordingControlON {
   @extend %recordingControl;
-  /*width:40px; height:40px;*/
-  padding: 7px 10px;
-  background-color: #221e29; color:#C80B5C; 
-  border: var(--border-size-large) solid #C80B5C;
-  svg {margin-top:-1px; position: relative; top:-3px;}
+
+  padding: 5px;
+  background-color: var(--color-primary);
+  border: var(--border-size-large) solid var(--color-primary);
+
   &:focus {
     background-clip: padding-box;
     border: var(--border-size-large) solid transparent;
-  }
-
-   @include mq($small-only) {
-    padding: 7px 5px;
   }
 }
 
 .recordingControlOFF {
   @extend %recordingControl;
-  width:42px; height:42px;
-  border-radius: 50%;
-  background-color: #2d2835;
-  padding: 9px;
-  
-  svg {opacity:0.8;}
+
+  padding: 7px;
+  border: var(--border-size-small) solid var(--color-white);
   
   &:focus {
     padding: 5px;
     border: var(--border-size-large) solid var(--color-white);
     box-shadow: none;
-  }
-
-   @include mq($small-only) {
-    width:46px; height:46px;
-
-
-    &.presentationTitle {display:none;}
-
-    
   }
 }
 
@@ -101,31 +85,19 @@
   span {
     vertical-align: middle;
   }
-
-  @include mq($small-only) {
-     margin-left: 2px;
-  }
 }
 
 .recordingStatusViewOnly {
   display: flex;
-  padding: 7px 10px;
-  border: var(--border-size-large) solid #C80B5C;
-  background-color: #221e29; border-radius: 2rem 2rem;
-  svg {margin-top:-1px; position: relative; top:-2px;}
 }
 
 .recordingIndicatorIcon {
   width: var(--font-size-large);
   height: var(--font-size-large);
   font-size: var(--font-size-base);
-  margin-top: 1px;
-  margin-left: 4px;
-
 }
 
 .recordingIndicator {
-/*background-color: #221e29 !important; border-radius: 50%; width:40px; height:40px;*/ 
   &:hover {
     @include highContrastOutline();
   }
@@ -133,13 +105,12 @@
   &:active,
   &:focus,
   &:focus-within {
-    
+    @include highContrastOutline();
     outline-style: solid;
   }
 }
 
 .presentationTitleSeparator {
-  display:none;
   color: var(--color-gray);
   font-size: var(--font-size-base);
   margin: 0 1rem;

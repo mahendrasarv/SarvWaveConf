@@ -120,13 +120,11 @@ class UserParticipants extends Component {
         enter
         exit
         timeout={0}
-        component="ul"
+        component="div"
         className={cx(styles.participantsList)}
         key={u.userId}
       >
-      <div>
-         <div className="conf_contacts">
-          <ul ref={(node) => { this.userRefs[index += 1] = node; }}>
+        <div ref={(node) => { this.userRefs[index += 1] = node; }}>
           <UserListItemContainer
             {...{
               compact,
@@ -138,9 +136,7 @@ class UserParticipants extends Component {
             user={u}
             getScrollContainerRef={this.getScrollContainerRef}
           />
-          </ul>
-          </div>
-      </div>
+        </div>
       </CSSTransition>
     ));
   }
@@ -148,7 +144,6 @@ class UserParticipants extends Component {
   handleClickSelectedUser(event) {
     const selectedUser = event.path.find(p => p.className && p.className.includes('participantsList'));
     this.setState({ selectedUser });
-    console.log("selectedUser : ",selectedUser);
   }
 
   rove(event) {
@@ -173,10 +168,32 @@ class UserParticipants extends Component {
     } = this.props;
 
     return (
-      <div className="">
-        <div className="prtcpnt_hdng"> {users.length}  Meeting</div>
+      <div className={styles.userListColumn}>
+        {
+          !compact
+            ? (
+              <div className={styles.container}>
+                <h2 className={styles.smallTitle}>
+                  {intl.formatMessage(intlMessages.usersTitle)}
+                  &nbsp;(
+                  {users.length}
+                  )
+                </h2>
+                {currentUser.role === ROLE_MODERATOR
+                  ? (
+                    <UserOptionsContainer {...{
+                      users,
+                      setEmojiStatus,
+                      meetingIsBreakout,
+                    }}
+                    />
+                  ) : null
+                }
 
-
+              </div>
+            )
+            : <hr className={styles.separator} />
+        }
         <div
           className={styles.scrollableList}
           tabIndex={0}

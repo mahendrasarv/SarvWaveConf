@@ -4,7 +4,6 @@ import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Button from '/imports/ui/components/button/component';
 import Modal from '/imports/ui/components/modal/simple/component';
 import { styles } from './styles';
-import './modal.css';
 
 
 const intlMessages = defineMessages({
@@ -39,38 +38,24 @@ class EndMeetingComponent extends React.PureComponent {
     return (
       <Modal
         overlayClassName={styles.overlay}
-        className={styles.modal, "endmeeting-modal"}
+        className={styles.modal}
         onRequestClose={closeModal}
         hideBorder
         title={intl.formatMessage(intlMessages.endMeetingTitle)}
       >
         <div className={styles.container}>
-      
-        <div className={styles.callaction}>
-          <div className="phonering-alo-phone phonering-alo-green phonering-alo-show" id="phonering-alo-phoneIcon">
-            <div className="phonering-alo-ph-circle"></div>
-             <div className="phonering-alo-ph-circle-fill"></div>
-            <div className="pps-btn-img" >
-             <div className="phonering-alo-ph-img-circle text-center"><img src="images/icon-call.svg" alt="" width="20" /></div>
-             </div>
-            </div>
-          </div>
-          <div className="clear"></div>
-
           <div className={styles.description}>
-
             {intl.formatMessage(intlMessages.endMeetingDescription)}
           </div>
           <div className={styles.footer}>
             <Button
               data-test="confirmEndMeeting"
-              color="success"
+              color="primary"
               className={styles.button}
               label={intl.formatMessage(intlMessages.yesLabel)}
               onClick={endMeeting}
             />
             <Button
-              color="danger"
               label={intl.formatMessage(intlMessages.noLabel)}
               className={styles.button}
               onClick={closeModal}

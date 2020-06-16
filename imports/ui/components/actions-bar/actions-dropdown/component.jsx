@@ -14,12 +14,6 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import { styles } from '../styles';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fas);
-
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
   intl: intlShape.isRequired,
@@ -155,7 +149,18 @@ class ActionsDropdown extends PureComponent {
           />
         )
         : null),
-
+      (amIPresenter
+        ? (
+          <DropdownListItem
+            data-test="uploadPresentation"
+            icon="presentation"
+            label={formatMessage(presentationLabel)}
+            description={formatMessage(presentationDesc)}
+            key={this.presentationItemId}
+            onClick={this.handlePresentationClick}
+          />
+        )
+        : null),
       (amIPresenter && allowExternalVideo
         ? (
           <DropdownListItem
@@ -206,7 +211,7 @@ class ActionsDropdown extends PureComponent {
             aria-label={intl.formatMessage(intlMessages.actionsLabel)}
             className={styles.button}
             label={intl.formatMessage(intlMessages.actionsLabel)}
-            customIcon={<FontAwesomeIcon icon={['fas', 'poll-h']}/>}
+            icon="plus"
             color="primary"
             size="lg"
             circle

@@ -235,8 +235,6 @@ class MessageList extends Component {
           aria-relevant="additions"
           aria-label={isEmpty ? intl.formatMessage(intlMessages.emptyLogLabel) : ''}
         >
-          <ul>
-
           {messages.map(message => (
             <MessageListItem
               handleReadMessage={handleReadMessage}
@@ -249,7 +247,6 @@ class MessageList extends Component {
               scrollArea={scrollArea}
             />
           ))}
-          </ul>
         </div>
         {this.renderUnreadNotification()}
       </div>

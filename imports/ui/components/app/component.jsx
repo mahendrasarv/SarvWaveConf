@@ -4,14 +4,8 @@ import { throttle } from 'lodash';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Modal from 'react-modal';
 import browser from 'browser-detect';
-import LeftPanelManager from '/imports/ui/components/left-panel-manager/component';
 import PanelManager from '/imports/ui/components/panel-manager/component';
-import HeaderContainer from '/imports/ui/components/header/container';
-
-// import RightPanelManager from '/imports/ui/components/right-panel-manager/component';
 import PollingContainer from '/imports/ui/components/polling/container';
-import InviteContainer from '/imports/ui/components/invite/container';
-import SubHeaderContainer from '/imports/ui/components/sub-header/container';
 import logger from '/imports/startup/client/logger';
 import ActivityCheckContainer from '/imports/ui/components/activity-check/container';
 import UserInfoContainer from '/imports/ui/components/user-info/container';
@@ -88,7 +82,6 @@ const propTypes = {
   intl: intlShape.isRequired,
 };
 
-
 const defaultProps = {
   navbar: null,
   sidebar: null,
@@ -106,13 +99,10 @@ class App extends Component {
     super();
     this.state = {
       enableResize: !window.matchMedia(MOBILE_MEDIA).matches,
-      mobPanelOpen: false
     };
 
     this.handleWindowResize = throttle(this.handleWindowResize).bind(this);
     this.shouldAriaHide = this.shouldAriaHide.bind(this);
-
-    this.panelHandle = this.panelHandle.bind(this);
   }
 
   componentDidMount() {
@@ -163,7 +153,7 @@ class App extends Component {
 
     if (prevProps.currentUserEmoji.status !== currentUserEmoji.status) {
       const formattedEmojiStatus = intl.formatMessage({ id: `app.actionsBar.emojiMenu.${currentUserEmoji.status}Label` })
-        || currentUserEmoji.status;
+      || currentUserEmoji.status;
 
       notify(
         currentUserEmoji.status === 'none'
@@ -213,95 +203,31 @@ class App extends Component {
     return openPanel !== '' && (isPhone || isLayeredView.matches);
   }
 
-  panelHandle(){
-    const { mobPanelOpen } = this.state;
-    this.setState({
-      mobPanelOpen: !mobPanelOpen
-    })
-  }
-
-  renderLeftPanel() {
-    const { enableResize, mobPanelOpen } = this.state;
-    const { openPanel, 
-      isRTL, 
-      User, 
-      UserInfo, 
-      amIModerator, 
-      isPhone
-    } = this.props;
-
-    return (
-      <LeftPanelManager
-        {...{
-          openPanel,
-          User,
-          UserInfo,
-          enableResize,
-          isRTL,
-          amIModerator,
-          mobPanelOpen,
-          isPhone
-        }}
-        shouldAriaHide={this.shouldAriaHide}
-      />
-    );
-  }
-
-
   renderPanel() {
     const { enableResize } = this.state;
-    const { openPanel, isRTL, User, UserInfo } = this.props;
+    const { openPanel, isRTL } = this.props;
 
     return (
       <PanelManager
         {...{
           openPanel,
-          User,
-          UserInfo,
           enableResize,
           isRTL,
         }}
         shouldAriaHide={this.shouldAriaHide}
-      />
-    );
-  }
-
-  renderRightPanel() {
-    const { enableResize } = this.state;
-    const { openPanel, isRTL } = this.props;
-    
-    return (
-      <RightPanelManager
-        {...{
-          enableResize,
-          isRTL,
-        }}
-
       />
     );
   }
 
   renderNavBar() {
     const { navbar } = this.props;
-    
+
     if (!navbar) return null;
 
     return (
       <header className={styles.navbar}>
         {navbar}
       </header>
-    );
-  }
-
-  renderHeader() {
-    const { mobPanelOpen } = this.state;
-    return (
-      <div className={styles.header}>
-        <HeaderContainer 
-          mobPanelOpen={mobPanelOpen}
-          panelHandle={this.panelHandle}
-        />
-      </div>
     );
   }
 
@@ -313,11 +239,9 @@ class App extends Component {
     return (
       <aside className={styles.sidebar}>
         {sidebar}
-
       </aside>
     );
   }
-
 
   renderCaptions() {
     const { captions } = this.props;
@@ -346,8 +270,7 @@ class App extends Component {
         aria-hidden={this.shouldAriaHide()}
       >
         {media}
-
-
+        {this.renderCaptions()}
       </section>
     );
   }
@@ -396,7 +319,7 @@ class App extends Component {
 
   render() {
     const {
-      customStyle, customStyleUrl, openPanel, amIModerator
+      customStyle, customStyleUrl, openPanel,
     } = this.props;
     return (
       <main className={styles.main}>
@@ -404,25 +327,13 @@ class App extends Component {
         {this.renderUserInformation()}
         <BannerBarContainer />
         <NotificationsBarContainer />
-        {/* <InviteContainer
-          {...{
-            amIModerator
-          }}
-        /> */}
-        {this.renderHeader()}
         <section className={styles.wrapper}>
           <div className={openPanel ? styles.content : styles.noPanelContent}>
-            {/* {this.renderNavBar()} */}
-            <SubHeaderContainer />
+            {this.renderNavBar()}
             {this.renderMedia()}
-            {/*this.renderDocuments()*/}
             {this.renderActionsBar()}
           </div>
-          {this.renderLeftPanel()}
-          {/* <div className={styles.rightPanelContent} > */}
-            {/*this.renderRightPanel()*/}
-            {/* <Document /> */}
-          {/* </div> */}
+          {this.renderPanel()}
           {this.renderSidebar()}
         </section>
         <BreakoutRoomInvitation />
@@ -435,7 +346,6 @@ class App extends Component {
         <LockNotifier />
         <PingPongContainer />
         <ManyWebcamsNotifier />
-
         {customStyleUrl ? <link rel="stylesheet" type="text/css" href={customStyleUrl} /> : null}
         {customStyle ? <link rel="stylesheet" type="text/css" href={`data:text/css;charset=UTF-8,${encodeURIComponent(customStyle)}`} /> : null}
       </main>

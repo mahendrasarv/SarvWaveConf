@@ -34,7 +34,6 @@ class UserPolls extends PureComponent {
     if (!pollIsOpen && !forcePollOpen) return null;
 
     return (
-      
       <div className={styles.messages}>
         <div className={styles.container}>
           <h2 className={styles.smallTitle}>

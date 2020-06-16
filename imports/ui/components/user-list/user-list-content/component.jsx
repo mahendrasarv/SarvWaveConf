@@ -53,9 +53,34 @@ class UserContent extends PureComponent {
         className={styles.content}
         role="complementary"
       >
-      {pendingUsers.length > 0 && currentUser.role === ROLE_MODERATOR
+        {CHAT_ENABLED
+          ? (<UserMessages
+            {...{
+              isPublicChat,
+              activeChats,
+              compact,
+              intl,
+              roving,
+            }}
+          />
+          ) : null
+        }
+        {currentUser.role === ROLE_MODERATOR
           ? (
-
+            <UserCaptionsContainer
+              {...{
+                intl,
+              }}
+            />
+          ) : null
+        }
+        <UserNotesContainer
+          {...{
+            intl,
+          }}
+        />
+        {pendingUsers.length > 0 && currentUser.role === ROLE_MODERATOR
+          ? (
             <WaitingUsers
               {...{
                 intl,
@@ -64,7 +89,15 @@ class UserContent extends PureComponent {
             />
           ) : null
         }
-      <UserParticipantsContainer
+        <UserPolls
+          isPresenter={currentUser.presenter}
+          {...{
+            pollIsOpen,
+            forcePollOpen,
+          }}
+        />
+        <BreakoutRoomItem isPresenter={currentUser.presenter} hasBreakoutRoom={hasBreakoutRoom} />
+        <UserParticipantsContainer
           {...{
             compact,
             intl,

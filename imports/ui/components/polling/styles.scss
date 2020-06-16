@@ -28,14 +28,14 @@
   position: absolute;
 
   z-index: var(--pollIndex);
-  border: 1px solid var(--color-sidebar-bg);
+  border: 1px solid var(--color-off-white);
   border-radius: var(--border-radius);
-  box-shadow: #141219 0px 0px 15px;
+  box-shadow: var(--color-gray-dark) 0px 0px var(--lg-padding-y);
   align-items: center;
   text-align: center;
   font-weight: 600;
   padding: var(--md-padding-y);
-  background-color: var(--color-sidebar-bg);
+  background-color: var(--color-white);
   bottom: var(--jumbo-padding-x);
   right: var(--jumbo-padding-x);
 
@@ -58,8 +58,8 @@
 }
 
 .pollingTitle {
-  color: var(--color-white);
-  white-space: nowrap; font-weight:300; font-size:16px;
+  color: var(--color-text);
+  white-space: nowrap;
   padding-bottom: var(--md-padding-y);
   padding-top: var(--md-padding-y);
 }
@@ -73,10 +73,6 @@
 .pollingButton {
   width: 100%;
   max-width: var(--max-btn-width);
-  background-color: #1c1822;
-   border: 1px solid #715a99;
-    font-weight:300; 
-    color:var(--color-gray);
 
   @include mq($hasPhoneDimentions) {
     max-width: none;
@@ -87,7 +83,6 @@
 }
 
 .pollingAnswers {
-
   display: grid;
   grid-template-columns: repeat(var(--col-amount), 1fr);
 

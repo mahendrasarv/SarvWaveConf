@@ -22,7 +22,7 @@ export default () => (
             <FormattedMessage
               id="app.home.greeting"
               description="Message to greet the user."
-              defaultMessage=""
+              defaultMessage="Your presentation will begin shortly..."
             />
             <br />
           </p>

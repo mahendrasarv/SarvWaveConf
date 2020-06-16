@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import WhiteboardOverlayContainer from '/imports/ui/components/whiteboard/whiteboard-overlay/container';
 import WhiteboardToolbarContainer from '/imports/ui/components/whiteboard/whiteboard-toolbar/container';
-
 import { HUNDRED_PERCENT, MAX_PERCENT } from '/imports/utils/slideCalcUtils';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import PresentationToolbarContainer from './presentation-toolbar/container';
@@ -371,8 +370,7 @@ class PresentationArea extends PureComponent {
       slidePosition,
       userIsPresenter,
     } = this.props;
-    // console.log("svgDimensions : ",svgDimensions);
-    // console.log("viewBoxDimensions : ",viewBoxDimensions);
+
     const {
       localPosition,
     } = this.state;
@@ -569,14 +567,9 @@ class PresentationArea extends PureComponent {
       presentationAreaWidth,
       localPosition,
     } = this.state;
-    // console.log("showSlide : ",showSlide);
-    // console.log("fitToWidth : ",fitToWidth);
-    // console.log("presentationAreaWidth : ",presentationAreaWidth);
-    // console.log("localPosition : ",localPosition);
+
     let viewBoxDimensions;
-    // console.log("userIsPresenter :",userIsPresenter);
-    // console.log("localPosition :",localPosition);
-    // console.log("slidePosition :",slidePosition);
+
     if (userIsPresenter && localPosition) {
       viewBoxDimensions = {
         width: localPosition.width,
@@ -589,8 +582,8 @@ class PresentationArea extends PureComponent {
       };
     } else {
       viewBoxDimensions = {
-        width: 500,
-        height: 500,
+        width: 0,
+        height: 0,
       };
     }
 
@@ -601,7 +594,6 @@ class PresentationArea extends PureComponent {
     const toolbarHeight = this.getToolbarHeight();
 
     let toolbarWidth = 0;
-    // console.log("this.refWhiteboardArea : ",this.refWhiteboardArea);
     if (this.refWhiteboardArea) {
       if (svgWidth === presentationAreaWidth
         || presentationAreaWidth <= 400
@@ -655,7 +647,6 @@ class PresentationArea extends PureComponent {
                 </div>
               )
               : null}
-
           </div>
         </div>
       </div>

@@ -13,9 +13,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0 !important;
-
-  & label {font-size:14px; text-align:center;}
+  padding: .3rem 0 0.5rem 0;
 }
 
 .captionsOptions {
@@ -32,39 +30,36 @@
 .modal {
   @extend .modal;
   padding: 1.5rem;
-  min-height: auto; max-width:35vw; 
-
-  @include mq($small-only) {
-    max-width:95vw;
-  }
+  min-height: 20rem;
 }
 
 .select {
   @include elementFocus(var(--color-primary));
 
-  background-color: var(--color-border-bg);
-  border: var(--border-size) solid var(--color-border-bg);
+  background-color: var(--color-white);
+  border: var(--border-size) solid var(--color-white);
   border-radius: var(--border-size);
-  border-bottom: 0.1rem solid var(--color-border-bg);
+  border-bottom: 0.1rem solid var(--color-gray-lighter);
   color: var(--color-gray-label);
-  width: 90%;
-  height: 2.5rem; font-size:15px; border-radius:5px;
-  padding: 5px 10px;
+  width: 40%;
+  height: 1.75rem;
+  padding: 1px;
 
   &:hover {
-    outline:none !important; box-shadow:none !important;
+    @include highContrastOutline();
   }
 
   &:focus {
-    outline:none !important; box-shadow:none !important;
+    @include highContrastOutline();
+    outline-style: solid;
   }
 }
 
 .title {
   text-align: center;
   font-weight: 400;
-  font-size: 1.3rem; margin-bottom:10px;
-  color: var(--color-white);
+  font-size: 1.3rem;
+  color: var(--color-background);
   white-space: normal;
 
   @include mq($small-only) {
@@ -76,9 +71,10 @@
 .startBtn {
   align-self: center;
   margin: 0;
-  width: 100px; border-radius:4px;
+  width: 40%;
   display: block;
-  margin-top:15px; font-weight:600; font-size:14px;
+  position: absolute;
+  bottom: 20px;
   color: var(--color-white) !important;
   background-color: var(--color-link) !important;
 

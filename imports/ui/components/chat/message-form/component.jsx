@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import TypingIndicatorContainer from './typing-indicator/container';
 import { styles } from './styles.scss';
 import Button from '../../button/component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
   intl: intlShape.isRequired,
@@ -44,7 +42,7 @@ const messages = defineMessages({
   },
   inputPlaceholder: {
     id: 'app.chat.inputPlaceholder',
-    description: 'Type a messages...',
+    description: 'Chat message input placeholder',
   },
   errorMaxMessageLength: {
     id: 'app.chat.errorMaxMessageLength',
@@ -273,40 +271,45 @@ class MessageForm extends PureComponent {
     const { hasErrors, error, message } = this.state;
 
     return CHAT_ENABLED ? (
-      <div class="chat_type_area">
-        <div class="chat_type_bx">
-
-          <form
-            ref={(ref) => { this.form = ref; }}
-            className={cx(className, styles.form)}
-            onSubmit={this.handleSubmit}
-          >
-
-          <div className={styles.wrapper}>
-          {/*<button class="btn btn-link"><FontAwesomeIcon icon={faPlus} /></button>*/}
-            <TextareaAutosize
-              className="type_input"
-              id="message-input"
-              innerRef={(ref) => { this.textarea = ref; return this.textarea; }}
-              placeholder={intl.formatMessage(messages.inputPlaceholder, { 0: chatName })}
-              aria-controls={chatAreaId}
-              aria-label={intl.formatMessage(messages.inputLabel, { 0: chatTitle })}
-              aria-invalid={hasErrors ? 'true' : 'false'}
-              aria-describedby={hasErrors ? 'message-input-error' : null}
-              autoCorrect="off"
-              autoComplete="off"
-              spellCheck="true"
-              disabled={disabled}
-              value={message}
-              onChange={this.handleMessageChange}
-              onKeyDown={this.handleMessageKeyDown}
-            />
-
-          </div>
-          <TypingIndicatorContainer {...{ error }} />
+      <form
+        ref={(ref) => { this.form = ref; }}
+        className={cx(className, styles.form)}
+        onSubmit={this.handleSubmit}
+      >
+        <div className={styles.wrapper}>
+          <TextareaAutosize
+            className={styles.input}
+            id="message-input"
+            innerRef={(ref) => { this.textarea = ref; return this.textarea; }}
+            placeholder={intl.formatMessage(messages.inputPlaceholder, { 0: chatName })}
+            aria-controls={chatAreaId}
+            aria-label={intl.formatMessage(messages.inputLabel, { 0: chatTitle })}
+            aria-invalid={hasErrors ? 'true' : 'false'}
+            aria-describedby={hasErrors ? 'message-input-error' : null}
+            autoCorrect="off"
+            autoComplete="off"
+            spellCheck="true"
+            disabled={disabled}
+            value={message}
+            onChange={this.handleMessageChange}
+            onKeyDown={this.handleMessageKeyDown}
+          />
+          <Button
+            hideLabel
+            circle
+            className={styles.sendButton}
+            aria-label={intl.formatMessage(messages.submitLabel)}
+            type="submit"
+            disabled={disabled}
+            label={intl.formatMessage(messages.submitLabel)}
+            color="primary"
+            icon="send"
+            onClick={() => {}}
+            data-test="sendMessageButton"
+          />
+        </div>
+        <TypingIndicatorContainer {...{ error }} />
       </form>
-      </div>
-      </div>
     ) : null;
   }
 }

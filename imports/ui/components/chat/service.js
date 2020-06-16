@@ -21,7 +21,6 @@ const PUBLIC_CHAT_USER_ID = CHAT_CONFIG.system_userid;
 const PUBLIC_CHAT_CLEAR = CHAT_CONFIG.system_messages_keys.chat_clear;
 
 const ROLE_MODERATOR = Meteor.settings.public.user.role_moderator;
-const ROLE_VIEWER = Meteor.settings.public.user.role_viewer;
 
 const CONNECTION_STATUS_ONLINE = 'online';
 
@@ -31,37 +30,8 @@ const UnsentMessagesCollection = new Mongo.Collection(null);
 
 // session for closed chat list
 const CLOSED_CHAT_LIST_KEY = 'closedChatList';
-const userFindSorting = {
-  emojiTime: 1,
-  role: 1,
-  phoneUser: 1,
-  sortName: 1,
-  userId: 1,
-};
 
 const getUser = userId => Users.findOne({ userId });
-
-const getUserCountList = () => {
-  let users = Users
-    .find({
-      meetingId: Auth.meetingID,
-      connectionStatus: 'online',
-    }, userFindSorting)
-    .fetch();
-
-  const currentUser = Users.findOne({ userId: Auth.userID }, { fields: { role: 1, locked: 1 } });
-  if (currentUser && currentUser.role === ROLE_VIEWER && currentUser.locked) {
-    const meeting = Meetings.findOne({ meetingId: Auth.meetingID },
-      { fields: { 'lockSettingsProps.hideUserList': 1 } });
-    if (meeting && meeting.lockSettingsProps && meeting.lockSettingsProps.hideUserList) {
-      const moderatorOrCurrentUser = u => u.role === ROLE_MODERATOR || u.userId === Auth.userID;
-      users = users.filter(moderatorOrCurrentUser);
-    }
-  }
-
-  return users;
-};
-
 
 const getWelcomeProp = () => Meetings.findOne({ meetingId: Auth.meetingID },
   { fields: { welcomeProp: 1 } });
@@ -361,7 +331,6 @@ export default {
   getPublicGroupMessages,
   getPrivateGroupMessages,
   getUser,
-  getUserCountList,
   getWelcomeProp,
   getScrollPosition,
   hasUnreadMessages,

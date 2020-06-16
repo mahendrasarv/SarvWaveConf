@@ -8,15 +8,14 @@
   --position-top-chrome: 5.5em;
   --position-left-chrome: 18em;
   --position-top-safari: 150px;
-  --arrow-top: -110px;
-  --arrow-left: 20px;
+  --arrow-top: -65px;
+  --arrow-left: -20px;
   --arrow-top-edge: -2.5rem;
   --arrow-left-edge: -21rem;
   --rtl-hint-top: 15rem;
 }
 
 @mixin arrowIconStyle() {
-
   &:after {
     top: var(--arrow-top);
     left: var(--arrow-left);
@@ -26,8 +25,6 @@
     font-family: 'bbb-icons';
     content: "\E906";
     position: relative;
-    color:var(--color-white); padding-top:13px; padding-left:5px;
-    background:rgba(0, 0, 0, 0.3); width:45px; height:45px; border-radius:50% 50%;
 
     [dir="rtl"] & {
       left: auto;
@@ -55,7 +52,7 @@
   }
 }
 
-/*@mixin useRTLPosition() {
+@mixin useRTLPosition() {
   right: none;
   left: none;
   top: var(--rtl-hint-top);
@@ -97,7 +94,7 @@
     margin-left: auto;
     margin-right: auto;
   }
-}*/
+}
 
 .overlay {
   position: fixed;
@@ -114,23 +111,20 @@
 }
 
 .content {
-  color: var(--color-grey);
-  font-weight: 300;
+  color: var(--color-black);
 }
 
 .hint {
-  /*@include positionHint();*/
-  top:35%;
-  left:0px; right:0px; margin:0 auto;
+  @include positionHint();
   position: absolute;
   background: none;
   box-shadow: none;
- color: var(--color-grey);
-  font-size: 20px;
-  font-weight: 300;
-  padding: 15px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 0 0 var(--jumbo-padding-x);
   line-height: 18px;
-  width: 500px; text-align:center;
+  width: 340px;
 
   [dir="rtl"] & {
     padding: 0 var(--jumbo-padding-x) 0 0;
@@ -138,14 +132,13 @@
 
   small {
     display: block;
-    font-size: 15px;
-     font-weight: 300;
-    line-height: 20px;
-    margin-top: 15px;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 3px;
     opacity: .6;
   }
 
- @include arrowIconStyle();
+  @include arrowIconStyle();
 }
 
 @-webkit-keyframes bounce {

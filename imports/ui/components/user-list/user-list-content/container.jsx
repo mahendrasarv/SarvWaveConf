@@ -5,14 +5,12 @@ import Auth from '/imports/ui/services/auth';
 import UserContent from './component';
 import GuestUsers from '/imports/api/guest-users/';
 import Users from '/imports/api/users';
-import UserListService from '/imports/ui/components/user-list/service';
 
 const UserContentContainer = props => <UserContent {...props} />;
 
 export default withTracker(() => ({
   pollIsOpen: Session.equals('isPollOpen', true),
   forcePollOpen: Session.equals('forcePollOpen', true),
-  users: UserListService.getUsers(),
   currentUser: Users.findOne({ userId: Auth.userID }, {
     fields: {
       userId: 1,

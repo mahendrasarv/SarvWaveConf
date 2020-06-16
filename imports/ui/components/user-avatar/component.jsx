@@ -53,9 +53,11 @@ const UserAvatar = ({
       [styles.voice]: voice,
       [styles.noVoice]: noVoice && !listenOnly,
     }, className)}
-
+    style={{
+      backgroundColor: color,
+      color, // We need the same color on both for the border
+    }}
   >
-
 
     <div className={cx({
       [styles.talking]: (talking && !muted),
@@ -64,14 +66,8 @@ const UserAvatar = ({
 
 
     <div className={styles.content}>
-    <span className="color_p">  {children}</span>
+      {children}
     </div>
-    {/* <span className={cx({
-      [styles.talking]: (talking && !muted),
-    })}
-    />
-    <span className="color_p">{children}</span>*/}
-
   </div>
 );
 

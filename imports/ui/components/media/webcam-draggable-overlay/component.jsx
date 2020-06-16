@@ -389,7 +389,6 @@ class WebcamDraggable extends Component {
                 )
                 : null
             }
-
           </Resizable>
         </Draggable>
 

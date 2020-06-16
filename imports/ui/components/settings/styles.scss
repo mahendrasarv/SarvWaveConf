@@ -1,5 +1,5 @@
 @import "../../stylesheets/variables/_all";
-.title {color:var(--color-white); text-align:left;}
+
 .tabs {
   display: flex;
   flex-flow: row;
@@ -29,7 +29,7 @@
 .icon {
   margin: 0 .5rem 0 0;
   font-size: var(--font-size-large);
-  color:var(--color-white);
+
   [dir="rtl"] & {
      margin: 0 0 0 .5rem;
   }
@@ -52,7 +52,6 @@
   min-width: 0;
   & > span {
     @extend %text-elipsis;
-    color:var(--color-white);
   }
 
   @include mq($small-only) {

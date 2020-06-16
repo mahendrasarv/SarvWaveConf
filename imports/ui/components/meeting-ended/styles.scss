@@ -11,23 +11,16 @@
 .modal {
   display: flex;
   padding: var(--lg-padding-x);
-  background-color: var(--color-theme);
+  background-color: var(--color-white);
   flex-direction: column;
   border-radius: var(--border-radius);
   max-width: 95vw;
-  width: 500px;
-
-   @include mq($small-only) {
-    width: 100%;
-  }
-  
+  width: 600px;
 }
 
 .text {
-  color: var(--color-gray);
-  font-weight: 300;
-  font-size:16px;
-
+  color: var(--color-text);
+  font-weight: normal;
   padding: var(--line-height-computed) 0;
   @include mq($small-only) {
     font-size: var(--font-size-small);
@@ -40,13 +33,11 @@
 
 .title {
   margin: 0;
-  font-weight: 300 !important;
-  color: var(--color-white);
-  font-size:24px !important; margin-top:20px;
+  font-size: var(--font-size-large);
+  font-weight: var(--headings-font-weight);
 }
 
 .button {
-font-size:15px; font-weight: 300; margin-top:10px; border-radius:30px; width:130px;	
   @include mq($small-only) {
     font-size: var(--font-size-base);
   }

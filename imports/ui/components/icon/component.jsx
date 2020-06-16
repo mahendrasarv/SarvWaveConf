@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
 
-
-
 const propTypes = {
   iconName: PropTypes.string.isRequired,
   prependIconName: PropTypes.string,
@@ -20,8 +18,6 @@ const Icon = ({
   iconName,
   ...props
 }) => (
-
-
   <i
     className={cx(className, [prependIconName, iconName].join(''))}
     // ToastContainer from react-toastify passes a useless closeToast prop here

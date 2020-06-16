@@ -314,7 +314,13 @@ class BreakoutRoom extends PureComponent {
     } = this.props;
     return (
       <div className={styles.panel}>
-        
+        <Button
+          icon="left_arrow"
+          label={intl.formatMessage(intlMessages.breakoutTitle)}
+          aria-label={intl.formatMessage(intlMessages.breakoutAriaTitle)}
+          className={styles.header}
+          onClick={closeBreakoutPanel}
+        />
         {this.renderBreakoutRooms()}
         {this.renderDuration()}
         {

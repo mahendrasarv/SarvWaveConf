@@ -7,8 +7,7 @@ import UserAvatar from '/imports/ui/components/user-avatar/component';
 import Message from './message/component';
 
 import { styles } from './styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock } from '@fortawesome/free-solid-svg-icons'
+
 const propTypes = {
   user: PropTypes.shape({
     color: PropTypes.string,
@@ -72,7 +71,19 @@ class MessageListItem extends Component {
 
     return (
       <div className={styles.messages}>
-
+        {messages.map(message => (
+          message.text !== ''
+            ? (
+              <Message
+                className={(message.id ? styles.systemMessage : null)}
+                key={_.uniqueId('id-')}
+                text={message.text}
+                time={message.time}
+                chatAreaId={chatAreaId}
+                handleReadMessage={handleReadMessage}
+              />
+            ) : null
+        ))}
       </div>
     );
   }
@@ -98,17 +109,34 @@ class MessageListItem extends Component {
     }
 
     return (
-
-        <li>
-          <div className="sender_detail">
-          {user.name}
-             <span><FontAwesomeIcon icon={faClock} />
-                <time className={styles.time} dateTime={dateTime}>
-                  <FormattedTime value={dateTime} />
-                </time>
-              </span>
+      <div className={styles.item}>
+        <div className={styles.wrapper} ref={(ref) => { this.item = ref; }}>
+          <div className={styles.avatarWrapper}>
+            <UserAvatar
+              className={styles.avatar}
+              color={user.color}
+              moderator={user.isModerator}
+            >
+              {user.name.toLowerCase().slice(0, 2)}
+            </UserAvatar>
           </div>
-
+          <div className={styles.content}>
+            <div className={styles.meta}>
+              <div className={user.isOnline ? styles.name : styles.logout}>
+                <span>{user.name}</span>
+                {user.isOnline
+                  ? null
+                  : (
+                    <span className={styles.offline}>
+                      {`(${intl.formatMessage(intlMessages.offline)})`}
+                    </span>
+                  )}
+              </div>
+              <time className={styles.time} dateTime={dateTime}>
+                <FormattedTime value={dateTime} />
+              </time>
+            </div>
+            <div className={styles.messages}>
               {messages.map(message => (
                 <Message
                   className={(regEx.test(message.text) ? styles.hyperlink : styles.message)}
@@ -121,11 +149,11 @@ class MessageListItem extends Component {
                   scrollArea={scrollArea}
                 />
               ))}
-
-
-        </li>
-
-     );
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

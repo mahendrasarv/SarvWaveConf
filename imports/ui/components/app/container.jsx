@@ -8,8 +8,6 @@ import Meetings from '/imports/api/meetings';
 import { notify } from '/imports/ui/services/notification';
 import CaptionsContainer from '/imports/ui/components/captions/container';
 import CaptionsService from '/imports/ui/components/captions/service';
-import ActionService from '/imports/ui/components/captions/service';
-import ChatService from '/imports/ui/components/chat/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import deviceInfo from '/imports/utils/deviceInfo';
 import UserInfos from '/imports/api/users-infos';
@@ -65,7 +63,6 @@ const AppContainer = (props) => {
       navbar={navbar}
       actionsbar={actionsbar}
       media={media}
-
       {...otherProps}
     />
   );
@@ -81,7 +78,6 @@ const currentUserEmoji = currentUser => (currentUser ? {
 
 export default injectIntl(withModalMounter(withTracker(({ intl, baseControls }) => {
   const currentUser = Users.findOne({ userId: Auth.userID }, { fields: { approved: 1, emoji: 1 } });
-  let getUserList = ChatService.getUserCountList();
   const currentMeeting = Meetings.findOne({ meetingId: Auth.meetingID },
     { fields: { publishedPoll: 1, voiceProp: 1 } });
   const { publishedPoll, voiceProp } = currentMeeting;
@@ -108,7 +104,6 @@ export default injectIntl(withModalMounter(withTracker(({ intl, baseControls }) 
 
   return {
     captions: CaptionsService.isCaptionsActive() ? <CaptionsContainer /> : null,
-    amIModerator: ActionService.amIModerator(),
     fontSize: getFontSize(),
     hasBreakoutRooms: getBreakoutRooms().length > 0,
     customStyle: getFromUserSettings('bbb_custom_style', false),
@@ -116,7 +111,6 @@ export default injectIntl(withModalMounter(withTracker(({ intl, baseControls }) 
     openPanel: Session.get('openPanel'),
     UserInfo,
     notify,
-    getUserList,
     validIOSVersion,
     isPhone: deviceInfo.type().isPhone,
     isRTL: document.documentElement.getAttribute('dir') === 'rtl',

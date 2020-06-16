@@ -1,25 +1,14 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import injectWbResizeEvent from '/imports/ui/components/presentation/resize-wrapper/component';
 import Button from '/imports/ui/components/button/component';
-import UserListContainer from '/imports/ui/components/user-list/component';
-
 import { Session } from 'meteor/session';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
-import './chat.css';
 import { styles } from './styles.scss';
 import MessageForm from './message-form/container';
 import MessageList from './message-list/container';
 import ChatDropdown from './chat-dropdown/component';
-
-import NoteContainer from '/imports/ui/components/note/component';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fas);
 
 const ELEMENT_ID = 'chat-messages';
 
@@ -37,15 +26,12 @@ const Chat = (props) => {
   const {
     chatID,
     chatName,
-    getUserList,
     title,
     messages,
     partnerIsLoggedOut,
     isChatLocked,
     actions,
     intl,
-    User,
-    UserInfo,
     shortcuts,
     isMeteorConnected,
     lastReadMessageTime,
@@ -60,13 +46,50 @@ const Chat = (props) => {
   const HIDE_CHAT_AK = shortcuts.hidePrivateChat;
   const CLOSE_CHAT_AK = shortcuts.closePrivateChat;
 
-  // console.log("getUserList : ",getUserList.length);
   return (
     <div
       data-test="publicChat"
-      className="chat_block"
+      className={styles.chat}
     >
-
+      <header className={styles.header}>
+        <div
+          data-test="chatTitle"
+          className={styles.title}
+        >
+          <Button
+            onClick={() => {
+              Session.set('idChatOpen', '');
+              Session.set('openPanel', 'userlist');
+            }}
+            aria-label={intl.formatMessage(intlMessages.hideChatLabel, { 0: title })}
+            accessKey={HIDE_CHAT_AK}
+            label={title}
+            icon="left_arrow"
+            className={styles.hideBtn}
+          />
+        </div>
+        {
+          chatID !== 'public'
+            ? (
+              <Button
+                icon="close"
+                size="sm"
+                ghost
+                color="dark"
+                hideLabel
+                onClick={() => {
+                  actions.handleClosePrivateChat(chatID);
+                  Session.set('idChatOpen', '');
+                  Session.set('openPanel', 'userlist');
+                }}
+                aria-label={intl.formatMessage(intlMessages.closeChatLabel, { 0: title })}
+                label={intl.formatMessage(intlMessages.closeChatLabel, { 0: title })}
+                accessKey={CLOSE_CHAT_AK}
+              />
+            )
+            : <ChatDropdown isMeteorConnected={isMeteorConnected} amIModerator={amIModerator} />
+        }
+      </header>
       <MessageList
         id={ELEMENT_ID}
         chatId={chatID}
@@ -97,8 +120,6 @@ const Chat = (props) => {
         partnerIsLoggedOut={partnerIsLoggedOut}
       />
     </div>
-
-
   );
 };
 

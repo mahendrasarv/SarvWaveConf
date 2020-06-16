@@ -609,20 +609,17 @@ class VideoPreview extends Component {
 
         <div className={styles.footer}>
           <div className={styles.actions}>
-           
+            <Button
+              label={intl.formatMessage(intlMessages.cancelLabel)}
+              onClick={this.handleProceed}
+              disabled={shouldDisableButtons}
+            />
             <Button
               color="primary"
               label={intl.formatMessage(intlMessages.startSharingLabel)}
               onClick={this.handleStartSharing}
               disabled={isStartSharingDisabled || isStartSharingDisabled === null || shouldDisableButtons}
             />
-
-            {/*
-             <Button
-              label={intl.formatMessage(intlMessages.cancelLabel)}
-              onClick={this.handleProceed}
-              disabled={shouldDisableButtons}
-            />*/}
           </div>
         </div>
       </div>

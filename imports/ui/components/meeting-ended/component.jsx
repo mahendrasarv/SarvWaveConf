@@ -143,7 +143,7 @@ class MeetingEnded extends React.PureComponent {
       comment: MeetingEnded.getComment(),
       userRole: this.localUserRole,
     };
-    const url = '/SarvLiveConf/feedback';
+    const url = '/html5client/feedback';
     const options = {
       method: 'POST',
       body: JSON.stringify(message),
@@ -181,7 +181,6 @@ class MeetingEnded extends React.PureComponent {
       <div className={styles.parent}>
         <div className={styles.modal}>
           <div className={styles.content}>
-          <img src="images/sarv-wave-white-bg.png" alt="" width="300" />
             <h1 className={styles.title} data-test="meetingEndedModalTitle">
               {
                 intl.formatMessage(intlMessage[code] || intlMessage[430])

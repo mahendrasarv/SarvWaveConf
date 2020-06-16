@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import BreakoutRoomContainer from '/imports/ui/components/breakout-room/container';
-// import UserListContainer from '/imports/ui/components/user-list/container';
-import HeaderContainer from '/imports/ui/components/header/container';
+import UserListContainer from '/imports/ui/components/user-list/container';
 import ChatContainer from '/imports/ui/components/chat/container';
 import NoteContainer from '/imports/ui/components/note/container';
 import PollContainer from '/imports/ui/components/poll/container';
@@ -44,16 +43,12 @@ const propTypes = {
 const DEFAULT_PANEL_WIDTH = 340;
 
 // Variables for resizing user-list.
-const USERLIST_MIN_WIDTH_PX = 340;
-const USERLIST_MAX_WIDTH_PX = 340;
+const USERLIST_MIN_WIDTH_PX = 150;
+const USERLIST_MAX_WIDTH_PX = 240;
 
 // Variables for resizing chat.
-const CHAT_MIN_WIDTH = 350;
+const CHAT_MIN_WIDTH = 150;
 const CHAT_MAX_WIDTH = 350;
-
-// Variables for resizing chat.
-const DOCUMENT_MIN_WIDTH = 150;
-const DOCUMENT_MAX_WIDTH = 250;
 
 // Variables for resizing poll.
 const POLL_MIN_WIDTH = 320;
@@ -81,7 +76,6 @@ class PanelManager extends PureComponent {
     this.userlistKey = _.uniqueId('userlist-');
     this.breakoutroomKey = _.uniqueId('breakoutroom-');
     this.chatKey = _.uniqueId('chat-');
-    this.documentKey = _.uniqueId('document-');
     this.pollKey = _.uniqueId('poll-');
     this.noteKey = _.uniqueId('note-');
     this.captionsKey = _.uniqueId('captions-');
@@ -89,7 +83,6 @@ class PanelManager extends PureComponent {
 
     this.state = {
       chatWidth: DEFAULT_PANEL_WIDTH,
-      documentWidth: DEFAULT_PANEL_WIDTH,
       pollWidth: DEFAULT_PANEL_WIDTH,
       userlistWidth: 180,
       noteWidth: DEFAULT_PANEL_WIDTH,
@@ -99,7 +92,7 @@ class PanelManager extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { openPanel ,User, UserInfo } = this.props;
+    const { openPanel } = this.props;
     const { openPanel: oldOpenPanel } = prevProps;
 
     if (openPanel !== oldOpenPanel) {
@@ -107,37 +100,74 @@ class PanelManager extends PureComponent {
     }
   }
 
-  // renderHeader() {
-  //   const {
-  //     intl,
-  //     enableResize,
-  //     openPanel,
-  //     shouldAriaHide,
-  //   } = this.props;
+  renderUserList() {
+    const {
+      intl,
+      enableResize,
+      openPanel,
+      shouldAriaHide,
+    } = this.props;
 
-
-  //   return (
-  //     <header className="container-fluid header">
-  //       <HeaderContainer />
-  //     </header>
-
-  //   );
-  // }
-
-  renderChat() {
-    const { intl,User, UserInfo, enableResize } = this.props;
+    const ariaHidden = shouldAriaHide() && openPanel !== 'userlist';
 
     return (
-      <div className="srv_chat_section">
-      <div className="container-fluid srv_conf_content_sec">
-
-  	      <section className={styles.chat} aria-label={intl.formatMessage(intlMessages.chatLabel)} key={enableResize ? null : this.chatKey} >
-  	        <ChatContainer />
-  	      </section>
-
+      <div
+        className={styles.userList}
+        aria-label={intl.formatMessage(intlMessages.userListLabel)}
+        key={enableResize ? null : this.userlistKey}
+        aria-hidden={ariaHidden}
+      >
+        <UserListContainer />
       </div>
-      </div>
+    );
+  }
 
+  renderUserListResizable() {
+    const { userlistWidth } = this.state;
+    const { isRTL } = this.props;
+
+    const resizableEnableOptions = {
+      top: false,
+      right: !isRTL,
+      bottom: false,
+      left: !!isRTL,
+      topRight: false,
+      bottomRight: false,
+      bottomLeft: false,
+      topLeft: false,
+    };
+
+    return (
+      <Resizable
+        minWidth={USERLIST_MIN_WIDTH_PX}
+        maxWidth={USERLIST_MAX_WIDTH_PX}
+        ref={(node) => { this.resizableUserList = node; }}
+        enable={resizableEnableOptions}
+        key={this.userlistKey}
+        size={{ width: userlistWidth }}
+        onResize={dispatchResizeEvent}
+        onResizeStop={(e, direction, ref, d) => {
+          this.setState({
+            userlistWidth: userlistWidth + d.width,
+          });
+        }}
+      >
+        {this.renderUserList()}
+      </Resizable>
+    );
+  }
+
+  renderChat() {
+    const { intl, enableResize } = this.props;
+
+    return (
+      <section
+        className={styles.chat}
+        aria-label={intl.formatMessage(intlMessages.chatLabel)}
+        key={enableResize ? null : this.chatKey}
+      >
+        <ChatContainer />
+      </section>
     );
   }
 
@@ -187,7 +217,6 @@ class PanelManager extends PureComponent {
       >
         <NoteContainer />
       </section>
-      //
     );
   }
 
@@ -237,7 +266,6 @@ class PanelManager extends PureComponent {
       >
         <CaptionsContainer />
       </section>
-      //
     );
   }
 
@@ -271,7 +299,6 @@ class PanelManager extends PureComponent {
           });
         }}
       >
-      //
         {this.renderCaptions()}
       </Resizable>
     );
@@ -288,8 +315,6 @@ class PanelManager extends PureComponent {
       >
         <WaitingUsersPanel />
       </section>
-      //
-
     );
   }
 
@@ -333,7 +358,6 @@ class PanelManager extends PureComponent {
       <div className={styles.breakoutRoom} key={this.breakoutroomKey}>
         <BreakoutRoomContainer />
       </div>
-      //
     );
   }
 
@@ -384,11 +408,14 @@ class PanelManager extends PureComponent {
     const { enableResize, openPanel } = this.props;
     if (openPanel === '') return null;
     const panels = [];
-    // if (enableResize) {
-    //   panels.push( this.renderHeader());
-    // } else {
-    //   panels.push(this.renderHeader());
-    // }
+    if (enableResize) {
+      panels.push(
+        this.renderUserListResizable(),
+        <div className={styles.userlistPad} key={this.padKey} />,
+      );
+    } else {
+      panels.push(this.renderUserList());
+    }
 
     if (openPanel === 'chat') {
       if (enableResize) {
@@ -404,9 +431,15 @@ class PanelManager extends PureComponent {
       } else {
         panels.push(this.renderNote());
       }
-
     }
-    // panels.push(this.renderDocument());
+
+    if (openPanel === 'captions') {
+      if (enableResize) {
+        panels.push(this.renderCaptionsResizable());
+      } else {
+        panels.push(this.renderCaptions());
+      }
+    }
 
     if (openPanel === 'poll') {
       if (enableResize) {

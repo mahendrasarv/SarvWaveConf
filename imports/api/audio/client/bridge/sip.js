@@ -279,7 +279,7 @@ class SIPSession {
         register: false,
         traceSip: true,
         autostart: false,
-        userAgentString: 'SarvWave',
+        userAgentString: 'BigBlueButton',
         stunServers: stun,
         turnServers: turn,
         hackPlanBUnifiedPlanTranslation: isSafari,

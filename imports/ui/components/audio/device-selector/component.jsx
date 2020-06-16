@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import logger from '/imports/startup/client/logger';
 import browser from 'browser-detect';
-
-import { styles } from './styles';
+import { styles } from '../audio-modal/styles';
 
 const propTypes = {
   kind: PropTypes.oneOf(['audioinput', 'audiooutput', 'videoinput']),
@@ -90,7 +89,7 @@ class DeviceSelector extends Component {
         value={value}
         onChange={this.handleSelectChange}
         disabled={!options.length}
-        className={styles.select}
+        className={cx(styles.select, className)}
       >
         {
           options.length

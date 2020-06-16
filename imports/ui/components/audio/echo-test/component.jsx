@@ -4,12 +4,6 @@ import { Session } from 'meteor/session';
 import Button from '/imports/ui/components/button/component';
 import { defineMessages, intlShape, injectIntl } from 'react-intl';
 import { styles } from './styles';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fas);
-
-
 
 const intlMessages = defineMessages({
   confirmLabel: {
@@ -65,27 +59,25 @@ class EchoTest extends Component {
       <span className={styles.echoTest}>
         <Button
           className={styles.button}
-          customIcon={<FontAwesomeIcon icon={['fas', 'volume-up']}/>}
+          label={intl.formatMessage(intlMessages.confirmLabel)}
+          aria-label={intl.formatMessage(intlMessages.confirmAriaLabel)}
+          icon="thumbs_up"
+          disabled={this.state.disabled}
+          circle
           color="success"
           size="jumbo"
           onClick={disableYesButtonClicked(this.handleYes)}
-        >
-
-        <div className={styles.yeslabel}>
-        {intl.formatMessage(intlMessages.confirmLabel)}
-        </div>
-      </Button>
+        />
         <Button
           className={styles.button}
+          label={intl.formatMessage(intlMessages.disconfirmLabel)}
+          aria-label={intl.formatMessage(intlMessages.disconfirmAriaLabel)}
+          icon="thumbs_down"
+          circle
           color="danger"
           size="jumbo"
           onClick={this.handleNo}
-          customIcon={<FontAwesomeIcon icon={['fas', 'volume-mute']}/>}
-        >
-        <div className={styles.nolabel}>
-        {intl.formatMessage(intlMessages.disconfirmLabel)}
-        </div>
-        </Button>
+        />
       </span>
     );
   }

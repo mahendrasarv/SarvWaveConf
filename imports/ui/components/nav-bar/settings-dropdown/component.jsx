@@ -18,9 +18,6 @@ import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/componen
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '../../fullscreen-button/service';
 
-
-
-
 import { styles } from '../styles';
 
 const intlMessages = defineMessages({
@@ -102,7 +99,6 @@ const propTypes = {
   amIModerator: PropTypes.bool,
   shortcuts: PropTypes.string,
   isBreakoutRoom: PropTypes.bool,
-  isByActionBar: PropTypes.bool,
   isMeteorConnected: PropTypes.bool.isRequired,
 };
 
@@ -204,7 +200,7 @@ class SettingsDropdown extends PureComponent {
 
   renderMenuItems() {
     const {
-      intl, mountModal, amIModerator, isBreakoutRoom, isMeteorConnected, isByActionBar
+      intl, mountModal, amIModerator, isBreakoutRoom, isMeteorConnected,
     } = this.props;
 
     const allowedToEndMeeting = amIModerator && !isBreakoutRoom;
@@ -225,7 +221,7 @@ class SettingsDropdown extends PureComponent {
       />
     );
 
-    const shouldRenderLogoutOption = ((isMeteorConnected && allowLogoutSetting) && !isByActionBar)
+    const shouldRenderLogoutOption = (isMeteorConnected && allowLogoutSetting)
       ? logoutOption
       : null;
 
@@ -238,18 +234,19 @@ class SettingsDropdown extends PureComponent {
         description={intl.formatMessage(intlMessages.settingsDesc)}
         onClick={() => mountModal(<SettingsMenuContainer />)}
       />),
-      /*(<DropdownListItem
+      (<DropdownListItem
         key="list-item-about"
         icon="about"
         label={intl.formatMessage(intlMessages.aboutLabel)}
         description={intl.formatMessage(intlMessages.aboutDesc)}
         onClick={() => mountModal(<AboutContainer />)}
-      />),*/
+      />),
       !helpButton ? null
         : (
           <DropdownListItem
             key="list-item-help"
-            icon="listen"
+            icon="help"
+            iconRight="popout_window"
             label={intl.formatMessage(intlMessages.helpLabel)}
             description={intl.formatMessage(intlMessages.helpDesc)}
             onClick={() => window.open(`${helpLink}`)}
@@ -262,6 +259,17 @@ class SettingsDropdown extends PureComponent {
         description={intl.formatMessage(intlMessages.hotkeysDesc)}
         onClick={() => mountModal(<ShortcutHelpComponent />)}
       />),
+      (isMeteorConnected ? <DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
+      allowedToEndMeeting && isMeteorConnected
+        ? (<DropdownListItem
+          key="list-item-end-meeting"
+          icon="application"
+          label={intl.formatMessage(intlMessages.endMeetingLabel)}
+          description={intl.formatMessage(intlMessages.endMeetingDesc)}
+          onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
+        />
+        )
+        : null,
       shouldRenderLogoutOption,
     ]);
   }
@@ -269,7 +277,6 @@ class SettingsDropdown extends PureComponent {
   render() {
     const {
       intl,
-      isByActionBar,
       shortcuts: OPEN_OPTIONS_AK,
     } = this.props;
 
@@ -281,24 +288,8 @@ class SettingsDropdown extends PureComponent {
         keepOpen={isSettingOpen}
         onShow={this.onActionsShow}
         onHide={this.onActionsHide}
-
       >
         <DropdownTrigger tabIndex={0} accessKey={OPEN_OPTIONS_AK}>
-        {
-          isByActionBar?
-            <Button
-              className={styles.settingActionBtn}
-              icon="settings"
-              label={intl.formatMessage(intlMessages.optionsLabel)}
-              description={"Settings Description"}
-              color="primary"
-              hideLabel
-              circle
-              size="lg"
-              // onClick={this.onCreateBreakouts}
-              id="setting"
-            />
-          :
           <Button
             label={intl.formatMessage(intlMessages.optionsLabel)}
             icon="more"
@@ -311,23 +302,12 @@ class SettingsDropdown extends PureComponent {
             // even after the DropdownTrigger inject an onClick handler
             onClick={() => null}
           />
-        }
         </DropdownTrigger>
-        {
-          isByActionBar?
-            <DropdownContent className={styles.settingDropdownContent} placement="top right">
-              <DropdownList>
-                {this.renderMenuItems()}
-              </DropdownList>
-            </DropdownContent>
-            :
-            <DropdownContent placement="bottom right">
-              <DropdownList>
-                {this.renderMenuItems()}
-              </DropdownList>
-            </DropdownContent>
-        }
-
+        <DropdownContent placement="bottom right">
+          <DropdownList>
+            {this.renderMenuItems()}
+          </DropdownList>
+        </DropdownContent>
       </Dropdown>
     );
   }

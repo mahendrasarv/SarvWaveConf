@@ -106,11 +106,7 @@ export default class Media extends Component {
             usersVideo={usersVideo}
           />
         ) : null}
-
-
-
       </div>
-
     );
   }
 }

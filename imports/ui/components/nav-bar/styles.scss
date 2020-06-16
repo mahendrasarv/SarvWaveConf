@@ -119,27 +119,5 @@
   }
 }
 
-.settingActionBtn {
-  span {
-    box-shadow: none;
-    background-color: #2d2835 !important;
-    border-color: transparent !important;
-    color: #eee !important;
-  }
-
-
-   &:hover,
-  &:focus {
-    span {
-      background-color: transparent !important;
-      color: #44ADA8 !important;
-      border-color: #44ADA8 !important;
-      opacity: 1;
-   }
-  }
-}
-
-.settingDropdownContent {min-width:11rem;}
-
 .btnSettings {
 }

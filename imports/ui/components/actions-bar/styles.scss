@@ -11,9 +11,7 @@
   padding: var(--jumbo-padding-y);
   min-height: var(--min-modal-height);
   text-align: center;
-  
 }
-
 
 .overlay {
   @extend .overlay;
@@ -25,8 +23,6 @@
   color: var(--color-background);
   white-space: normal;
   padding-bottom: var(--md-padding-x);
-
-
 }
 
 .actionsbar,
@@ -34,13 +30,6 @@
 .right {
   display: flex;
   flex-direction: row;
-}
-
-.center {margin-left:-100px;
-@include mq($small-only) { 
-  margin-left:0px;
-}
-
 }
 
 .center,
@@ -79,22 +68,18 @@
 .right {
   position: absolute;
   bottom: var(--sm-padding-x);
-  right: 115px;
+  right: var(--sm-padding-x);
   left: auto;
 
   [dir="rtl"] & {
     right: auto;
     left: var(--sm-padding-x);
   }
-
-   @include mq($small-only) {
-    right: 30px;
-  }
 }
 
 .centerWithActions {
   @include mq($xsmall-only) {
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
 
@@ -109,46 +94,16 @@
   }
 }
 
-
+.button {
+  span:first-child {
+    box-shadow: 0 2px 5px 0 rgb(0, 0, 0);
+  }
+}
 
 .btn {
   span {
     box-shadow: none;
-    background-color: #2d2835 !important; box-shadow:none !important;  color: #eeeeee !important;
-    border-color: transparent !important;
+    background-color: transparent !important;
+    border-color: var(--color-white) !important;
   }
 }
-
-.mobiledropToggle {
-background-color: var(--color-theme); 
-border: none !important; padding:0px; margin:10px 0 0 0;
- 
-svg {font-size:23px; margin-top:5px;}
-
-&:focus, &:focus-within, &:hover, &:active, &:visited, &:visited {background-color: var(--color-theme); outline:none !important; box-shadow:none !important; border: none !important;}
-
-}
-.mobiledropDownMenu {
-  background-color: #221f29;
-  min-width:5rem;
-
-  ul {
-  list-style:none;
-  padding:0px;
-
-    li { list-style:none; padding:5px; margin:0px; text-align:center; position: relative;
-     
-    }
-
-  }
-
-}
-
-.btn:hover span {border-color: #44ADA8 !important; color: #44ADA8 !important;}
-.btn:nth-child(2):hover span {border-color: #F9BA52 !important; color: #F9BA52 !important;}
-.btn:nth-child(3):hover span {border-color: #FD512C !important; color: #FD512C !important;}
-.btn:nth-child(4):hover span {border-color: #D30F5C !important; color: #D30F5C !important;}
-.btn:nth-child(5):hover span {border-color: #44ADA8 !important; color: #44ADA8 !important;}
-.btn:nth-child(6):hover span {border-color: #C80B5C !important; color: #C80B5C !important;}
-.btn:nth-child(7):hover span {border-color: #FB652F !important; color: #FB652F !important;}
-.btn:nth-child(8):hover span {border-color: #44ADA8 !important; color: #44ADA8 !important;}

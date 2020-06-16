@@ -9,11 +9,9 @@
 }
 
 .closeBtn {
-    position: absolute; right:0px;border-radius:50% 50%; top:-22px;
-        background-color: var(--color-primary) !important;
-        color: var(--color-white) !important; width:25px; height:25px;
+    position: relative;
 	> i {
-        color: var(--color-white); margin-left:-5px; 
+        color: var(--color-text);
 	}
 }
 
@@ -29,7 +27,7 @@
     margin: var(--border-size-large);
     margin-bottom: var(--border-size);
     padding-left: 0;
-    padding-right: inherit; 
+    padding-right: inherit;
 
     [dir="rtl"] & {
       padding-left: inherit;
@@ -63,11 +61,9 @@
   margin-top: var(--md-padding-y);
   
   > Button {
-    font-weight:300;
-    border-radius:25px;
-    width:200px;
-    margin:15px auto 0 auto; 
-    font-size:13px;
+    width: 100%;
+    margin-top: var(--sm-padding-y);
+    margin-bottom: var(--sm-padding-y);
   }
 }
 
@@ -97,7 +93,7 @@
 .instructions {
     margin-top: var(--lg-padding-x);
     margin-bottom: var(--lg-padding-x);
-    color: var(--color-text); font-size:14px; font-weight:300; text-align:left;
+    color: var(--color-text);
 }
 
 .grid {
@@ -135,47 +131,30 @@
 
 .customBtn:hover,
 .pollBtn:hover {
-    box-shadow: 0 0 0 1px var(--color-theme-navyblue);
-    background-color: var(--color-theme-navyblue);
-    color: var(--poll-white);
+    box-shadow: 0 0 0 1px var(--poll-blue);
+    background-color: var(--color-white);
+    color: var(--poll-blue);
 
     > span {
-        color: var(--color-white);
+        color: var(--poll-blue);
         opacity: 1;
     }
 }
 
-
-.customBtn {
-    background-color: var(--color-theme-navyblue);
-    box-shadow: 0 0 0 1px var(--color-theme-navyblue);
-    color: var(--color-white); 
-    font-weight:300;
-    border-radius:25px; width:200px; margin:0 auto; font-size:15px;
-
-    > span {
-        color: var(--color-white);
-    }
-
-    > span:hover {
-        color: var(--color-white);
-        opacity: 1;
-    }
-}
-
+.customBtn,
 .pollBtn {
     margin-top: var(--sm-padding-y);
     margin-bottom: var(--sm-padding-y);
-    background-color: #312d3a;
-    box-shadow: 0 0 0 1px #454050;
-    color: var(--color-gray); font-weight:300;
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 1px var(--color-gray);
+    color: var(--color-gray);
 
     > span {
         color: var(--color-gray);
     }
 
     > span:hover {
-        color: var(--color-white);
+        color: var(--poll-blue);
         opacity: 1;
     }
 }
@@ -183,26 +162,24 @@
 .customBtn:active,
 .pollBtn:active {
     &:focus {
-        box-shadow: 0 0 0 1px var(--color-theme-navyblue);
-        color: var(--color-white);
+        box-shadow: 0 0 0 1px var(--poll-blue);
     }
 
     background-color: var(--color-white);
-    color: var(--color-white);
-    box-shadow: 0 0 0 1px var(--color-theme-navyblue);
+    box-shadow: 0 0 0 1px var(--poll-blue);
 
     > span {
-        color: var(--color-theme-navyblue);
+        color: var(--poll-blue);
     }
 }
 
 .customBtn:focus,
 .pollBtn:focus {
-    background-color: var(--color-primary);
-    box-shadow: 0 0 0 1px var(--color-primary);
-    color: var(--poll-white);
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 1px var(--poll-blue);
+
     > span {
-        color: var(--poll-white);
+        color: var(--poll-blue);
     }
 }
 
@@ -219,10 +196,10 @@
     }
     
     margin: 0;
-    color: var(--color-gray); 
-    background: var(--color-sidebar-bg);
+    color: var(--color-text);
+    background: var(--color-white);
     font-size: var(--font-size-small);
-    border: 1px solid var(--color-light-border);
+    border: 1px solid var(--color-gray-lighter);
     border-radius: var(--border-radius);
     padding: .3rem * 1 .3rem * 0.25;
     padding-left: var(--lg-padding-y);

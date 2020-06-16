@@ -40,23 +40,12 @@ class WaitingUsers extends PureComponent {
     } = this.props;
 
     return (
-    
-
-      <div>
-        <div className="prtcpnt_hdng">{pendingUsers.length}  waiting</div>
-      <div className="conf_contacts">
-        <ul className={styles.messages}>
-            <li className={styles.container} >
-              <div className="contact_name">
-                {intl.formatMessage(intlMessages.waitingUsersTitle)}
-              </div>
-              <div className="contact_conf_action">
-                  <a href="#" className="text-success"><FontAwesomeIcon icon={['fas', 'plus-circle']}  /> </a>
-                  <a href="#" className="text-danger"><FontAwesomeIcon icon={['fas', 'times-circle']}  /></a>
-              </div>
-            </li>
-        </ul>
-        
+      <div className={styles.messages}>
+        <div className={styles.container}>
+          <h2 className={styles.smallTitle}>
+            {intl.formatMessage(intlMessages.waitingUsersTitle)}
+          </h2>
+        </div>
         <div className={styles.scrollableList}>
           <div className={styles.list}>
             <div
@@ -75,7 +64,6 @@ class WaitingUsers extends PureComponent {
             </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

@@ -7,15 +7,15 @@ public:
     listenOnlyMode: true
     forceListenOnly: false
     skipCheck: false
-    clientTitle: SarvWavePeer
-    appName: SarvWavePeerConf
+    clientTitle: BigBlueButton
+    appName: BigBlueButton HTML5 Client
     bbbServerVersion: 2.2
-    copyright: "©2020 Sarv Workspace."
+    copyright: "©2019 BigBlueButton Inc."
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://sarv.com/contact/
+    helpLink: https://bigbluebutton.org/html5/
     lockOnJoin: true
     cdn: ""
-    basename: "/SarvLiveConf"
+    basename: "/html5client"
     askForFeedbackOnLogout: false
     allowUserLookup: false
     enableNetworkInformation: false
@@ -68,9 +68,6 @@ public:
       openActions:
         accesskey: A
         descId: openActions
-      openStatus:
-        accesskey: S
-        descId: openStatus
     branding:
       displayBrandingArea: false
     connectionTimeout: 60000
@@ -85,9 +82,10 @@ public:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: wss://mah2.dev.wave.sarv.com/bbb-webrtc-sfu
-    chromeDefaultExtensionKey:
-    chromeDefaultExtensionLink:
+    wsUrl: HOST
+    chromeDefaultExtensionKey: akgoaoikmbmhcopjgakkcepdgdgkjfbc
+    chromeDefaultExtensionLink: https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc
+    chromeExtensionKey: KEY
     chromeExtensionLink: LINK
     screenshare:
       constraints:
@@ -100,10 +98,10 @@ public:
           height:
             max: 1600
         audio: false
-    chromeScreenshareSources:
-    - window
-    - screen
-    firefoxScreenshareSource: window
+      chromeScreenshareSources:
+        - window
+        - screen
+      firefoxScreenshareSource: window
     cameraProfiles:
       - id: low
         name: Low quality
@@ -167,8 +165,8 @@ public:
     typingIndicator:
       enabled: true
   note:
-    enabled: true
-    url: https://mah2.dev.wave.sarv.com/pad
+    enabled: false
+    url: ETHERPAD_HOST
     config:
       showLineNumbers: false
       showChat: false
@@ -178,9 +176,8 @@ public:
   layout:
     autoSwapLayout: false
     hidePresentation: false
-    webcamsDefaultPlacement: "top"
   media:
-    stunTurnServersFetchAddress: "/SarvWavePeerAPI/api/stuns"
+    stunTurnServersFetchAddress: "/bigbluebutton/api/stuns"
     cacheStunTurnServers: true
     fallbackStunServer:  ''
     mediaTag: "#remote-media"
@@ -190,9 +187,9 @@ public:
     echoTestNumber: 'echo'
     relayOnlyOnReconnect: false
   presentation:
-    defaultPresentationFile: 
+    defaultPresentationFile: default.pdf
     panZoomThrottle: 32
-    uploadEndpoint: "/SarvWavePeerAPI/presentation/upload"
+    uploadEndpoint: "/bigbluebutton/presentation/upload"
     uploadSizeMin: 0
     uploadSizeMax: 50000000
     uploadValidMimeTypes:
@@ -327,7 +324,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: DmijbyYcQ3tBqKiFoiEPabVFP8fktBkDhQEUuYLU4wJ0uz6K0dJrFezvWd3
+    apikey: ETHERPAD_APIKEY
     version: 1.2.13
     host: 127.0.0.1
     port: 9001

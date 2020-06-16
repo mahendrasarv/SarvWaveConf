@@ -28,7 +28,7 @@ RUN cd /app/bundle/programs/server \
 
 WORKDIR /app/bundle
 
-ENV MONGO_URL=mongodb://mongo:27017/SarvLiveConf \
+ENV MONGO_URL=mongodb://mongo:27017/html5client \
     PORT=3000 \
     ROOT_URL=http://localhost:3000 \
     METEOR_SETTINGS_MODIFIER=.

@@ -68,18 +68,18 @@ const UserName = (props) => {
     return null;
   }
 
-  // if (isThisMeetingLocked && user.locked && user.role !== ROLE_MODERATOR) {
-  //   userNameSub.push(
-  //     <span>
-  //       <Icon iconName="lock" />
-  //       {intl.formatMessage(messages.locked)}
-  //     </span>,
-  //   );
-  // }
+  if (isThisMeetingLocked && user.locked && user.role !== ROLE_MODERATOR) {
+    userNameSub.push(
+      <span>
+        <Icon iconName="lock" />
+        {intl.formatMessage(messages.locked)}
+      </span>,
+    );
+  }
 
-  // if (user.guest) {
-  //   userNameSub.push(intl.formatMessage(messages.guest));
-  // }
+  if (user.guest) {
+    userNameSub.push(intl.formatMessage(messages.guest));
+  }
 
   return (
     <div
@@ -88,12 +88,13 @@ const UserName = (props) => {
       aria-label={userAriaLabel}
       aria-expanded={isActionsOpen}
     >
-
+      <span className={styles.userNameMain}>
+        <span>
           {user.name}
 &nbsp;
-        
+        </span>
         <i>{(isMe(user.userId)) ? `(${intl.formatMessage(messages.you)})` : ''}</i>
-      
+      </span>
       {
         userNameSub.length
           ? (

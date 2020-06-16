@@ -12,12 +12,8 @@
 
 .btn {
   width: 100%;
- 
-  background-color: var(--color-theme-navyblue);
-    box-shadow: 0 0 0 1px var(--color-theme-navyblue);
-    color: var(--color-white); 
-    font-weight:300; 
-    border-radius:25px; width:200px; margin:15px auto 0 auto; font-size:14px;
+  margin-top: var(--sm-padding-y);
+  margin-bottom: var(--sm-padding-y);
 }
 
 .main {
@@ -29,7 +25,7 @@
 .center {
   position: relative;
   flex: 1 1 auto;
-
+  border-left: 1px solid var(--color-gray-lighter);
   border-right : none;
   width: 100%;
   height: 100%;
@@ -41,20 +37,17 @@
 }
 
 .left {
-  
+  font-weight: bold;
   max-width: var(--poll-result-width);
   min-width: var(--poll-stats-element-width);
   word-wrap: break-word;
-  color:var(--color-white);
-  font-size:13px; 
 }
 
 .right {
   text-align: right;
-  color:var(--color-primary);
   max-width: var(--poll-stats-element-width);
   min-width: var(--poll-stats-element-width);
-  font-size:15px; 
+
   [dir="rtl"] & {
     text-align: left;
   }
@@ -66,7 +59,7 @@
   padding: var(--sm-padding-y);
   margin-top: var(--poll-sm-margin);
   margin-bottom: var(--poll-sm-margin);
-   font-weight: 300; 
+  color: var(--color-text);
 }
 
 .left,
@@ -118,42 +111,30 @@
 
 .theading {
   text-align: left;
-  background:var(--color-border-bg);
-  width:50%; color:var(--color-white); font-weight:300;
-   padding: .5rem;
 
   [dir="rtl"] & {
     text-align: right;
   }
 }
 
-table {width:100%; margin-top:15px; 
-border-top: 1px solid var(--color-border-bg); 
-border-left: 1px solid var(--color-border-bg);
-border-right: 1px solid var(--color-border-bg);}
-
 .resultLeft {
- 
-  
-  text-align: left;
+  padding: 0 .5rem 0 0;
+  border-bottom: 1px solid var(--color-gray-lightest);
+
   [dir="rtl"] & {
     padding: 0 0 0 .5rem;
   }
 }
 
-.resultRight{text-align: left;}
 .resultRight,
 .resultLeft {
-   padding: .5rem;
+  padding-bottom: .25rem;
   word-break: break-all;
-  color:var(--color-theme-navyblue);
-  border-bottom: 1px solid var(--color-border-bg);
 }
 
 .status {
   margin-top: .5rem;
   margin-bottom: .5rem;
-  color:#ffc107;
 }
 
 .connectingAnimation {

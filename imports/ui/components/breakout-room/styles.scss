@@ -3,12 +3,10 @@
 @import "/imports/ui/components/user-list/styles";
 @import "/imports/ui/components/user-list/user-list-content/styles";
 
-
 .panel {
   @include scrollbox-vertical();
-  background-color: #221e29;
-  background: #221e29;
-  padding: 0px;
+  background-color: #fff;
+  padding: var(--md-padding-x);
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -54,12 +52,11 @@
 }
 
 .content {
-  font-size: 16px;
-   color:var(--color-theme-navyblue);
+  font-size: var(--font-size-small);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-weight: 400; margin-top:15px; 
+  font-weight: bold;
 }
 
 .breakoutActions {
@@ -71,32 +68,27 @@
   & > .alreadyConnected {
     padding: 0 .5rem 0 0;
     display: inline-block;
-    vertical-align: middle; font-size:14px; font-weight:300;
+    vertical-align: middle;
   }
 }
 
 .joinButton,
 .button {
   flex: 0 1 48%;
-  background:var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-primary);
   margin: 0;
   font-weight: inherit;
-
-  &:hover {background:var(--color-theme-navyblue); color:white !important; opacity:1;}
-  &:focus {background:var(--color-theme-navyblue); color:white !important; opacity:1;}
 }
 
 .joinButton {
-  padding: .3rem .5rem !important;
+  padding: 0 .5rem 0 .5rem !important;
 }
 
 .endButton {
-  padding: .6rem .5rem;
-  font-weight: 300; width:200px; margin:0 auto;
-  border-radius: 30px;
-  font-size:15px;
-  background-color:var(--color-theme-navyblue);  
+  padding: .5rem;
+  font-weight: var(--headings-font-weight) !important;
+  border-radius: .2rem;
+  font-size: var(--font-size-small);  
 }
 
 .overlayContainer {
@@ -148,7 +140,7 @@
 .duration {
   display: flex;
   align-self: center;
-  margin: .5rem 0 .5rem 0; font-size:13px; color:#aaa;     font-weight: 300;
+  margin: .5rem 0 .5rem 0;
 }
 
 .usersAssignedNumberLabel {
@@ -166,10 +158,7 @@
   overflow-wrap: break-word;
   white-space: pre-line;
   margin-left: 1rem;
-  margin-top: 1rem;
-  font-size: var(--font-size-md);
-  font-weight:300; 
-  color:#aaa;
+  font-size: var(--font-size-small);
 }
 
 .breakoutColumn {

@@ -15,12 +15,6 @@ import Help from '../help/component';
 import AudioDial from '../audio-dial/component';
 import AudioAutoplayPrompt from '../autoplay/component';
 
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fas);
-
 const propTypes = {
   intl: intlShape.isRequired,
   closeModal: PropTypes.func.isRequired,
@@ -382,10 +376,10 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
+                icon="unmute"
                 circle
                 size="jumbo"
                 disabled={audioLocked}
-                customIcon={<FontAwesomeIcon icon={['fas', 'microphone-alt']}/>}
                 onClick={skipCheck ? this.handleJoinMicrophone : this.handleGoToEchoTest}
               />
             )
@@ -395,11 +389,11 @@ class AudioModal extends Component {
               <Button
                 className={styles.audioBtn}
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
+                icon="listen"
                 circle
                 size="jumbo"
-                customIcon={<FontAwesomeIcon icon={['fas', 'microphone-alt-slash']}/>}
                 onClick={this.handleJoinListenOnly}
-            />
+              />
             )
             : null}
         </span>

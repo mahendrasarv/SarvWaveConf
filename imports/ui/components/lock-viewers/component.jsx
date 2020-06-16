@@ -359,7 +359,10 @@ class LockViewersComponent extends Component {
         </div>
         <div className={styles.footer}>
           <div className={styles.actions}>
-
+            <Button
+              label={intl.formatMessage(intlMessages.buttonCancel)}
+              onClick={closeModal}
+            />
             <Button
               color="primary"
               label={intl.formatMessage(intlMessages.buttonApply)}
@@ -368,12 +371,6 @@ class LockViewersComponent extends Component {
                 updateWebcamsOnlyForModerator(usersProp.webcamsOnlyForModerator);
                 closeModal();
               }}
-            />
-
-             <Button
-              
-              label={intl.formatMessage(intlMessages.buttonCancel)}
-              onClick={closeModal}
             />
           </div>
         </div>

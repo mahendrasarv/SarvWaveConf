@@ -21,14 +21,13 @@
 }
 
 .button {
-  margin-left:10px;margin-bottom:10px;
   span, span:active, span:hover {
-    background-color: #28a745 !important; color:var(--color-white); padding:7px !important;
+    background-color: var(--color-transparent) !important;
     border: none !important;
     i {
       border: none !important;
       background-color: var(--color-transparent) !important;
-      font-weight: noraml !important; color:var(--color-white) !important; font-size:20px !important;
+      font-weight: bold !important;
     }
   }
 }

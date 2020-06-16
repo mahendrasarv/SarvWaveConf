@@ -122,7 +122,7 @@ const propTypes = {
   getBreakouts: PropTypes.func.isRequired,
   sendInvitation: PropTypes.func.isRequired,
   mountModal: PropTypes.func.isRequired,
-  isBreakoutRecordable: PropTypes.bool,
+  isBreakoutRecordable: PropTypes.bool.isRequired,
 };
 
 class BreakoutRoom extends PureComponent {
@@ -200,7 +200,6 @@ class BreakoutRoom extends PureComponent {
   }
 
   onCreateBreakouts() {
-    console.log("consoling create")
     const {
       createBreakoutRoom,
       meetingName,
@@ -233,13 +232,12 @@ class BreakoutRoom extends PureComponent {
       freeJoin,
       sequence: value,
     }));
-    
+
     createBreakoutRoom(rooms, durationTime, record);
     Session.set('isUserListOpen', true);
   }
 
   onInviteBreakout() {
-    console.log("consoling invite")
     const { getBreakouts, sendInvitation } = this.props;
     const { users } = this.state;
     const breakouts = getBreakouts();
@@ -253,7 +251,6 @@ class BreakoutRoom extends PureComponent {
       const breakoutUsers = this.getUserByRoom(breakout.sequence);
       breakoutUsers.forEach(user => sendInvitation(breakoutId, user.userId));
     });
-    
 
     this.setState({ preventClosing: false });
   }
@@ -390,7 +387,7 @@ class BreakoutRoom extends PureComponent {
     this.setState({
       numberOfRooms,
       numberOfRoomsIsValid: numberOfRooms <= MAX_BREAKOUT_ROOMS
-        && numberOfRooms >= MIN_BREAKOUT_ROOMS,
+      && numberOfRooms >= MIN_BREAKOUT_ROOMS,
     });
   }
 
@@ -507,7 +504,7 @@ class BreakoutRoom extends PureComponent {
                     `${intl.formatMessage(intlMessages.minusRoomTime)} ${intl.formatMessage(intlMessages.roomTime, { 0: durationTime - 1 })}`
                   }
                   icon="substract"
-                  onClick={() => { }}
+                  onClick={() => {}}
                   hideLabel
                   circle
                   size="sm"
@@ -524,7 +521,7 @@ class BreakoutRoom extends PureComponent {
                     `${intl.formatMessage(intlMessages.addRoomTime)} ${intl.formatMessage(intlMessages.roomTime, { 0: durationTime + 1 })}`
                   }
                   icon="add"
-                  onClick={() => { }}
+                  onClick={() => {}}
                   hideLabel
                   circle
                   size="sm"
@@ -669,7 +666,7 @@ class BreakoutRoom extends PureComponent {
             ))
           }
         </span>
-        {isInvitation || this.renderButtonSetLevel(1, intl.formatMessage(intlMessages.backLabel))}
+        { isInvitation || this.renderButtonSetLevel(1, intl.formatMessage(intlMessages.backLabel))}
       </div>
     );
   }
@@ -686,14 +683,14 @@ class BreakoutRoom extends PureComponent {
       <React.Fragment>
         {!valid
           && (
-            <span className={styles.withError}>
-              {intl.formatMessage(intlMessages.leastOneWarnBreakout)}
-            </span>)}
+          <span className={styles.withError}>
+            {intl.formatMessage(intlMessages.leastOneWarnBreakout)}
+          </span>)}
         {!numberOfRoomsIsValid
           && (
-            <span className={styles.withError}>
-              {intl.formatMessage(intlMessages.numberOfRoomsIsValid)}
-            </span>)}
+          <span className={styles.withError}>
+            {intl.formatMessage(intlMessages.numberOfRoomsIsValid)}
+          </span>)}
       </React.Fragment>
     );
   }
@@ -753,7 +750,7 @@ class BreakoutRoom extends PureComponent {
   }
 
   render() {
-    const { intl, isInvitation, mountModal } = this.props;
+    const { intl, isInvitation } = this.props;
     const {
       preventClosing,
       valid,
@@ -784,24 +781,10 @@ class BreakoutRoom extends PureComponent {
           label: intl.formatMessage(intlMessages.dismissLabel),
         }}
         preventClosing={preventClosing}
-        className={styles.breakOutModalClass}
       >
         <div className={styles.content}>
           {isInvitation || this.renderTitle()}
           {isMobileBrowser ? this.renderMobile() : this.renderDesktop()}
-        </div>
-        <div className={styles.btnCreate}>
-        {/* <Button
-          color="primary"
-          label={isInvitation
-            ? intl.formatMessage(intlMessages.invitationConfirm)
-            : intl.formatMessage(intlMessages.confirmButton)}
-          onClick={() => {
-            isInvitation ? this.onInviteBreakout : this.onCreateBreakouts;
-            mountModal(null);
-          }}
-          disabled={!valid || !numberOfRoomsIsValid}
-        /> */}
         </div>
       </Modal>
     );

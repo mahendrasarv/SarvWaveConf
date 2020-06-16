@@ -18,7 +18,7 @@ const downloadPresentationUri = (podId) => {
 
   const presentationFileName =  currentPresentation.id + '.' + currentPresentation.name.split('.').pop();
 
-  const uri = `https://${window.document.location.hostname}/SarvWavePeerAPI/presentation/download/`
+  const uri = `https://${window.document.location.hostname}/bigbluebutton/presentation/download/`
     + `${currentPresentation.meetingId}/${currentPresentation.id}`
     + `?presFilename=${encodeURIComponent(presentationFileName)}`;
 

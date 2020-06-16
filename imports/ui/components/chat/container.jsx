@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import Auth from '/imports/ui/services/auth';
 import Chat from './component';
 import ChatService from './service';
+import Storage from '/imports/ui/services/storage/session';
 
 const CHAT_CONFIG = Meteor.settings.public.chat;
 const PUBLIC_CHAT_KEY = CHAT_CONFIG.public_id;
@@ -57,16 +58,14 @@ class ChatContainer extends PureComponent {
 
 export default injectIntl(withTracker(({ intl }) => {
   const chatID = Session.get('idChatOpen');
-  console.log("chatID : ",chatID);
   let messages = [];
   let isChatLocked = ChatService.isChatLocked(chatID);
   let title = intl.formatMessage(intlMessages.titlePublic);
   let chatName = title;
   let partnerIsLoggedOut = false;
   let systemMessageIntl = {};
-  let getUserList = ChatService.getUserCountList();
-  const currentUser = ChatService.getUser(Auth.userID);
 
+  const currentUser = ChatService.getUser(Auth.userID);
   const amIModerator = currentUser.role === ROLE_MODERATOR;
 
   if (chatID === PUBLIC_CHAT_KEY) {
@@ -90,12 +89,13 @@ export default injectIntl(withTracker(({ intl }) => {
 
     const moderatorTime = time + 1;
     const moderatorId = `moderator-msg-${moderatorTime}`;
+    const modOnlyMessage = Storage.getItem('ModeratorOnlyMessage');
 
     const moderatorMsg = {
       id: moderatorId,
       content: [{
         id: moderatorId,
-        text: welcomeProp.modOnlyMessage,
+        text: modOnlyMessage,
         time: moderatorTime,
       }],
       time: moderatorTime,
@@ -111,7 +111,7 @@ export default injectIntl(withTracker(({ intl }) => {
 
     const messagesFormated = messagesBeforeWelcomeMsg
       .concat(welcomeMsg)
-      .concat(amIModerator ? moderatorMsg : [])
+      .concat((amIModerator && modOnlyMessage) ? moderatorMsg : [])
       .concat(messagesAfterWelcomeMsg);
 
     messages = messagesFormated.sort((a, b) => (a.time - b.time));
@@ -166,7 +166,6 @@ export default injectIntl(withTracker(({ intl }) => {
   return {
     chatID,
     chatName,
-    getUserList,
     title,
     messages,
     partnerIsLoggedOut,

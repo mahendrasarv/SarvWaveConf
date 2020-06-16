@@ -22,12 +22,8 @@
   font-size: .85rem;
   border: 2px solid transparent;
 
-  /*:global(.animationsEnabled) & {
+  :global(.animationsEnabled) & {
     transition: .3s ease-in-out;
-  }*/
-
-  &:before {
-  top:-2px !important;
   }
 
   &:after,
@@ -77,10 +73,10 @@
   right: 0;
   bottom: 0;
   left: 0;
- /* background-color: var(--user-color);*/
+  background-color: var(--user-color);
   border-radius: inherit;
 
-  /*:global(.animationsEnabled) & {
+  :global(.animationsEnabled) & {
     animation: pulse 1s infinite ease-in;
   }
 
@@ -97,7 +93,7 @@
       box-shadow: 0 0 0 4px var(--user-color);
       opacity: .5;
     }
-  }*/
+  }
 }
 
 @keyframes pulse {

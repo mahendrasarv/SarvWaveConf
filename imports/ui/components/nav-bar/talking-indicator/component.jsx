@@ -41,10 +41,10 @@ class TalkingIndicator extends PureComponent {
       } = talkers[`${id}`];
 
       const style = {
-        ["talker"]: true,
-        ["spoke"]: !talking,
-        ["muted"]: muted,
-        ["mobileHide"]: openPanel !== '',
+        [styles.talker]: true,
+        [styles.spoke]: !talking,
+        [styles.muted]: muted,
+        [styles.mobileHide]: openPanel !== '',
       };
 
       const ariaLabel = intl.formatMessage(talking
@@ -72,7 +72,7 @@ class TalkingIndicator extends PureComponent {
           }}
         >
           {talking ? (
-            <div id="description" className="">
+            <div id="description" className={styles.hidden}>
               {`${intl.formatMessage(intlMessages.ariaMuteDesc)}`}
             </div>
           ) : null

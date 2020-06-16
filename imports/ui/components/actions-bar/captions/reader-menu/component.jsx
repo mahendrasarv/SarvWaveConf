@@ -377,17 +377,15 @@ class ReaderMenu extends PureComponent {
         )}
         <div className={styles.footer}>
           <div className={styles.actions}>
-           
+            <Button
+              label={intl.formatMessage(intlMessages.cancelLabel)}
+              onClick={closeModal}
+            />
             <Button
               color="primary"
               label={intl.formatMessage(intlMessages.start)}
               onClick={() => this.handleStart()}
               disabled={locale == null}
-            />
-
-             <Button
-              label={intl.formatMessage(intlMessages.cancelLabel)}
-              onClick={closeModal}
             />
           </div>
         </div>

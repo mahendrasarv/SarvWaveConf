@@ -45,7 +45,22 @@ const Note = (props) => {
       data-test="note"
       className={styles.note}
     >
-    
+      <header className={styles.header}>
+        <div
+          data-test="noteTitle"
+          className={styles.title}
+        >
+          <Button
+            onClick={() => {
+              Session.set('openPanel', 'userlist');
+            }}
+            aria-label={intl.formatMessage(intlMessages.hideNoteLabel)}
+            label={intl.formatMessage(intlMessages.title)}
+            icon={isRTL ? "right_arrow" : "left_arrow"}
+            className={styles.hideBtn}
+          />
+        </div>
+      </header>
       <iframe
         title="etherpad"
         src={url}

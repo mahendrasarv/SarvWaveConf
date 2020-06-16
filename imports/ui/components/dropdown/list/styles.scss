@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   text-align: left;
-  color: var(--color-text-light-theme);
+  color: var(--color-gray-dark);
   display: flex;
   overflow-wrap: break-word;
   white-space: pre-line;
@@ -82,7 +82,8 @@
   &:focus {
     @include highContrastOutline();
     cursor: pointer;
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-white);
 
     .verticalList & {
       margin-left: -.25rem;
@@ -160,7 +161,7 @@
 }
 
 .itemLabel {
-  color: var(--color-text-light-theme);
+  color: var(--color-gray-dark);
   font-size: 90%;
   flex: 1;
 }

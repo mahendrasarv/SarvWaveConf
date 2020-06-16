@@ -11,10 +11,6 @@ import Service from './service';
 import VideoService from '../video-provider/service';
 import ExternalVideoService from '/imports/ui/components/external-video-player/service';
 import CaptionsService from '/imports/ui/components/captions/service';
-
-import ActionsBarService from '/imports/ui/components/actions-bar/service';
-import { meetingIsBreakout } from '/imports/ui/components/app/service';
-
 import {
   shareScreen,
   unshareScreen,
@@ -56,11 +52,4 @@ export default withTracker(() => ({
   isThereCurrentPresentation: Presentations.findOne({ meetingId: Auth.meetingID, current: true },
     { fields: {} }),
   allowExternalVideo: Meteor.settings.public.externalVideoPlayer.enabled,
-
-  getUsersNotAssigned: ActionsBarService.getUsersNotAssigned,
-  // hasBreakoutRoom: UserListService.hasBreakoutRoom(),
-  // isBreakoutEnabled: ActionsBarService.isBreakoutEnabled(),
-  isBreakoutRecordable: ActionsBarService.isBreakoutRecordable(),
-  // users: ActionsBarService.users(),
-  meetingIsBreakout: meetingIsBreakout(),
 }))(injectIntl(ActionsBarContainer));

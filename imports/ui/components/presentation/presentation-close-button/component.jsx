@@ -16,7 +16,7 @@ const ClosePresentationComponent = ({ intl, toggleSwapLayout }) => (
     aria-labelledby="closeLabel"
     aria-describedby="closeDesc"
     color="primary"
-    icon="close"
+    icon="minus"
     size="sm"
     onClick={toggleSwapLayout}
     label={intl.formatMessage(intlMessages.closePresentationLabel)}

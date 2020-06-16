@@ -64,8 +64,6 @@
   @extend %full-page;
   order: 3;
 
-  h1 {padding-left:15px !important;}
-
   &:before,
   &:after {
     content: '';
@@ -97,21 +95,7 @@
   }
 }
 
-.rightPanelContent {
-  @extend %full-page;
-  order: 3;
-  width:15%;
-
-
-  @include mq($medium-up) {
-    flex: 1;
-    order: 2; padding:0px 0px 0px 20px;
-  }
-}
-
-
 .content{
-padding: 0px 0px 0px 0px;
   margin:0 0 0 var(--panel-margin-left);
 
   [dir="rtl"] & {
@@ -239,9 +223,4 @@ padding: 0px 0px 0px 0px;
   padding: var(--bars-padding);
   position: relative;
   order: 3;
-}
-
-.chat_type_area_section {
-
-
 }

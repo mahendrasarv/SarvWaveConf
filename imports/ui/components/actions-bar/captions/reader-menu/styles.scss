@@ -13,13 +13,14 @@
 
 .title {
   display: block;
-  color: var(--color-white);
+  color: var(--color-background);
   font-size: 1.4rem;
   text-align: center;
 }
 
 .actions {
- margin:0 auto;
+  margin-left: auto;
+  margin-right: 3px;
 
 
   [dir="rtl"] & {
@@ -28,23 +29,18 @@
   }
 
   :first-child {
-    margin-right: 8px;
+    margin-right: 3px;
     margin-left: inherit;
 
     [dir="rtl"] & {
       margin-right: inherit;
-      margin-left: 8px;
+      margin-left: 3px;
     }
   }
 }
 .modal {
   @extend .modal;
   padding: 1rem;
-  max-width:35vw;
-   @include mq($small-only) {
-    max-width:95vw;
-  }
-
 }
 
 .col {
@@ -65,17 +61,16 @@
 }
 
 .select {
-  background-color: var(--color-border-bg);
-  border-color: var(--color-border-bg);
+  background-color: var(--color-white);
   border-radius: 0.3rem;
   color: var(--color-gray-label);
-  height: 2rem;
-  margin-top: 0.7rem;
+  height: 1.6rem;
+  margin-top: 0.4rem;
   width: 50%;
 }
 
 .label {
-  flex: 1 0 0; font-size:14px;
+  flex: 1 0 0;
 }
 
 
@@ -104,7 +99,7 @@
 
 .swatchInner {
   width: auto;
-  height: 2rem;
+  height: 1.1rem;
   border-radius: var(--border-size);
 }
 

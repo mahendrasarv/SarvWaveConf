@@ -551,7 +551,16 @@ export default class PresentationOverlay extends Component {
         height={slideHeight}
         style={{ zIndex: MAX_Z_INDEX }}
       >
-
+        <div
+          role="presentation"
+          onTouchStart={this.handleTouchStart}
+          onMouseDown={this.mouseDownHandler}
+          onWheel={this.mouseZoomHandler}
+          onBlur={() => {}}
+          style={overlayStyle}
+        >
+          {children}
+        </div>
       </foreignObject>
     );
   }

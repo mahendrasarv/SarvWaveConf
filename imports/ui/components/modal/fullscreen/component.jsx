@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '/imports/ui/components/button/component';
 import cx from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
-import ModalBase, { withModalState } from '../fullscreenbase/component';
+import ModalBase, { withModalState } from '../base/component';
 import { styles } from './styles.scss';
 
 const intlMessages = defineMessages({
@@ -139,9 +139,7 @@ class ModalFullscreen extends PureComponent {
           {children}
         </div>
         <div id="modalDismissDescription" hidden>{intl.formatMessage(intlMessages.modalCloseDescription)}</div>
-        <div id="modalConfirmDescription" hidden>{intl.formatMessage(intlMessages.modalDoneDescription)}</div> 
-        
-        
+        <div id="modalConfirmDescription" hidden>{intl.formatMessage(intlMessages.modalDoneDescription)}</div>
       </ModalBase>
     );
   }

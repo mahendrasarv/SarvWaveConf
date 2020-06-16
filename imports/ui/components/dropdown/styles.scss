@@ -3,7 +3,7 @@
 @import "/imports/ui/stylesheets/mixins/_indicators";
 
 :root {
-  --dropdown-bg: var(--color-dropdown-bg);
+  --dropdown-bg: var(--color-white);
   --dropdown-color: var(--color-text);
   --caret-shadow-color: var(--color-gray);
 
@@ -29,7 +29,7 @@
   position: absolute;
   background: var(--dropdown-bg);
   border-radius: var(--border-radius);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   border: 0;
   padding: calc(var(--line-height-computed) / 2);
 
@@ -126,7 +126,7 @@
   }
 
   &:before {
-    border-top: var(--dropdown-caret-height) solid var(--dropdown-bg);
+    border-top: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
@@ -151,7 +151,7 @@
   }
 
   &:before {
-    border-bottom: var(--dropdown-caret-height) solid var(--dropdown-bg);
+    border-bottom: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
@@ -180,13 +180,13 @@
   &:before {
 
     
-    border-left: var(--dropdown-caret-height) solid var(--dropdown-bg);
+    border-left: var(--dropdown-caret-height) solid var(--caret-shadow-color);
     border-right: 0;
 
     [dir="rtl"] & {
       transform: rotate(180deg);
       border-left: 0;
-      border-right: var(--dropdown-caret-height) solid var(--dropdown-bg);
+      border-right: var(--dropdown-caret-height) solid var(--caret-shadow-color);
     }
   }
 }
@@ -213,7 +213,7 @@
   }
 
   &:before {
-    border-right: var(--dropdown-caret-height) solid var(--dropdown-bg);
+    border-right: var(--dropdown-caret-height) solid var(--caret-shadow-color);
     border-left: 0;
 
     [dir="rtl"] & {
