@@ -1,0 +1,77 @@
+@import '/imports/ui/stylesheets/mixins/focus';
+@import '/imports/ui/stylesheets/variables/_all';
+@import '/imports/ui/stylesheets/variables/typography';
+@import "/imports/ui/components/modal/simple/styles";
+
+:root {
+  --description-margin: 3.5rem;
+}
+
+.title {
+  color: var(--color-gray-dark);
+  font-weight: var(--headings-font-weight);
+  font-size: var(--font-size-large);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 0;
+  margin-right: var(--description-margin);
+  margin-left: var(--description-margin);
+  margin-bottom: var(--lg-padding-x);
+}
+.callaction {display:flex;
+
+ @include mq($small-only) {
+    display:none;
+  }
+
+} 
+.footer {
+  display:flex; margin-left:50px;
+}
+
+.button {
+  padding-right: var(--jumbo-padding-y);
+  padding-left: var(--jumbo-padding-y);
+  margin: 0 var(--sm-padding-x) 0 0;
+
+  [dir="rtl"] & {
+    margin: 0 0 0 var(--sm-padding-x);
+  }
+}
+
+.description {
+  display:flex;
+  text-align: center;
+  line-height: var(--line-height-base);
+  color: var(--color-text-light-theme);
+  margin-bottom: var(--jumbo-padding-y);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-thin);
+  margin-left:50px;
+  
+  @include mq($small-only) {
+    margin-left:0px;
+  }
+}
+
+.modal {
+  @extend .modal;
+  padding: var(--sm-padding-y);
+}
+
+.overlay {
+  @extend .overlay;
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: var(--title-position-left);
+  margin-bottom: var(--lg-padding-y);
+}

@@ -1,0 +1,62 @@
+@import "/imports/ui/stylesheets/variables/_all";
+
+.parent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  padding: var(--lg-padding-x);
+  background-color: var(--color-theme);
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  max-width: 95vw;
+  width: 500px;
+
+   @include mq($small-only) {
+    width: 100%;
+  }
+  
+}
+
+.text {
+  color: var(--color-gray);
+  font-weight: 300;
+  font-size:16px;
+
+  padding: var(--line-height-computed) 0;
+  @include mq($small-only) {
+    font-size: var(--font-size-small);
+  }
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-weight: 300 !important;
+  color: var(--color-white);
+  font-size:24px !important; margin-top:20px;
+}
+
+.button {
+font-size:15px; font-weight: 300; margin-top:10px; border-radius:30px; width:130px;	
+  @include mq($small-only) {
+    font-size: var(--font-size-base);
+  }
+}
+
+.textarea {
+  resize: none;
+  margin: 1rem auto;
+  width: 100%;
+  &::placeholder {
+    text-align: center;
+  }
+}

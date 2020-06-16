@@ -1,0 +1,17 @@
+.shared-doc .table--zH2W2 > tbody > tr > td .file-icon { color: #f1c40f !important; font-size: 18px !important; margin-right: 5px;} 
+/*.shared-doc .table--zH2W2 > tbody > tr:nth-child(2) > td .file-icon {color: #e77e23 !important;}
+.shared-doc .table--zH2W2 > tbody > tr:nth-child(3) > td .file-icon {color: #e77e23 !important;}*/
+.shared-doc .tableItemName--Zb5vb8 {font-weight: 300; font-size: 14px !important; }
+.shared-doc .table--zH2W2 > tbody > tr {border-bottom: none;}
+.shared-doc .table--zH2W2 > tbody > tr > td, .shared-doc .table--zH2W2 > tbody > tr > th {padding-top: 8px; height: 50px; padding-bottom: 8px;}
+.itemAction--Z1m1XkW, .itemAction--Z1m1XkW > i {    font-size: 1.05rem; margin-left: 8px;}
+.shared-doc .table--zH2W2 > tbody > tr > td button:focus {outline: none; border:none; box-shadow: none; }
+.icon--ngtr1 {font-size: 1.30rem;}
+.shared-doc .checked--Z1TVWbO {    color: #28a745!important; font-size: 1.30rem;}
+.docuemnt_list .dropzone--18Flzz { border:none; }
+.docuemnt_uploader {padding: 0px;}
+.docuemnt_uploader .dropzone--18Flzz {border:none !important;}
+.shared-doc .currentLabel--1J5O1n {background: #23a49e !important;}
+.docuemnt_list .header--Z2mVeGn {border:none !important;}
+.confirm--Z2h3005 {width: 100%; border-radius: 5px !important; }
+.confirm--Z2h3005 span {font-size: 15px !important; font-weight: 300 !important; text-shadow: none !important;}

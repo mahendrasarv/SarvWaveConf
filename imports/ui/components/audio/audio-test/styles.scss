@@ -1,0 +1,29 @@
+@import "/imports/ui/stylesheets/variables/_all";
+
+.testAudioBtn {
+  margin: 0 !important;
+  background-color: transparent;
+  color: var(--color-theme-navyblue);
+  font-weight: 300; font-size:20px;
+  border: none;
+
+  i {
+    color: var(--color-theme-navyblue);
+
+    :global(.animationsEnabled) & {
+      transition: all .2s ease-in-out;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    i {
+      color: var(--color-primary);
+    }
+  }
+}

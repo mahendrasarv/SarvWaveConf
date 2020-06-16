@@ -1,0 +1,51 @@
+@import "/imports/ui/stylesheets/variables/_all";
+
+.echoTest {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.button {
+
+  border-radius:5px; height: 45px; width:100px; line-height:2px;  padding: 0px 15px; margin-top:1.5rem;
+  svg {display:inline-block;  font-size: 1.5rem; margin-right:5px; 
+
+    @include mq($small-only) {
+    font-size:1.2rem; 
+
+    }
+
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+
+  
+  &:first-child {
+    margin: 1.5rem 1.5rem 0 0;
+
+    [dir="rtl"] & {
+      margin: 0 0 0 3rem;
+    }
+
+    @include mq($small-only) {
+      margin: 1.5rem 1rem 0 0;
+
+      [dir="rtl"] & {
+        margin: 0 0 0 1rem;
+      }
+    }
+  }
+
+  span:last-child {
+    color: #FFF;
+    font-size: 1.4rem;
+    font-weight: 300; display:inline-block;
+     @include mq($small-only) { 
+      font-size: 1.2rem;
+     }
+
+
+  }
+}

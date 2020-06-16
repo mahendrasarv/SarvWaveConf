@@ -1,0 +1,14 @@
+@import "/imports/ui/stylesheets/variables/_all";
+@import '/imports/ui/stylesheets/mixins/_indicators';
+
+.item { width: 25px;  float: left; font-size:15px; cursor:pointer;
+	button {background:none; border:none; margin:0px; padding:0px; font-size:16px;
+
+	&:hover, &:focus {outline:none !important; border:none !important; background:none !important; box-shadow:none !important;}
+	&:hover{color:var(--color-primary)}
+
+	 }
+&:hover, &:focus {outline:none; border:none;}
+&:hover{color:var(--color-primary)}
+
+}

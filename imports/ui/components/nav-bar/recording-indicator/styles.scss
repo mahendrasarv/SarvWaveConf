@@ -1,0 +1,146 @@
+@import "../../../stylesheets/variables/_all";
+@import '/imports/ui/stylesheets/mixins/_indicators';
+@import "../../../stylesheets/variables/typography";
+
+.visuallyHidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+%recordingControl {
+  display: flex;
+  border-radius: 2rem 2rem;
+
+  span {
+    border: none;
+    box-shadow: none;
+    background-color: transparent !important;
+    color: var(--color-white) !important;
+  }
+
+  &:hover {
+    color: var(--color-white) !important;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--border-size) var(--color-primary);
+  }
+}
+
+.recordingControlON {
+  @extend %recordingControl;
+  /*width:40px; height:40px;*/
+  padding: 7px 10px;
+  background-color: #221e29; color:#C80B5C; 
+  border: var(--border-size-large) solid #C80B5C;
+  svg {margin-top:-1px; position: relative; top:-3px;}
+  &:focus {
+    background-clip: padding-box;
+    border: var(--border-size-large) solid transparent;
+  }
+
+   @include mq($small-only) {
+    padding: 7px 5px;
+  }
+}
+
+.recordingControlOFF {
+  @extend %recordingControl;
+  width:42px; height:42px;
+  border-radius: 50%;
+  background-color: #2d2835;
+  padding: 9px;
+  
+  svg {opacity:0.8;}
+  
+  &:focus {
+    padding: 5px;
+    border: var(--border-size-large) solid var(--color-white);
+    box-shadow: none;
+  }
+
+   @include mq($small-only) {
+    width:46px; height:46px;
+
+
+    &.presentationTitle {display:none;}
+
+    
+  }
+}
+
+.presentationTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 200;
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  padding: 0;
+  margin-left: var(--sm-padding-x);
+  margin-right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30vw;
+
+  [dir="rtl"]  & {
+    margin-left: 0;
+    margin-right: var(--sm-padding-x);
+  }
+
+  > [class^="icon-bbb-"] {
+    font-size: 75%;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  @include mq($small-only) {
+     margin-left: 2px;
+  }
+}
+
+.recordingStatusViewOnly {
+  display: flex;
+  padding: 7px 10px;
+  border: var(--border-size-large) solid #C80B5C;
+  background-color: #221e29; border-radius: 2rem 2rem;
+  svg {margin-top:-1px; position: relative; top:-2px;}
+}
+
+.recordingIndicatorIcon {
+  width: var(--font-size-large);
+  height: var(--font-size-large);
+  font-size: var(--font-size-base);
+  margin-top: 1px;
+  margin-left: 4px;
+
+}
+
+.recordingIndicator {
+/*background-color: #221e29 !important; border-radius: 50%; width:40px; height:40px;*/ 
+  &:hover {
+    @include highContrastOutline();
+  }
+
+  &:active,
+  &:focus,
+  &:focus-within {
+    
+    outline-style: solid;
+  }
+}
+
+.presentationTitleSeparator {
+  display:none;
+  color: var(--color-gray);
+  font-size: var(--font-size-base);
+  margin: 0 1rem;
+}

@@ -1,0 +1,7 @@
+/*.userListMenu {display:flex; flex-direction: column; margin-bottom: 25px; margin-top: 0px; position: relative;}
+.userListMenu .dropdown--1JXn2h {position: relative; left: auto; right: auto; display: flex;}
+.userListMenu button { width: 40px; height: 40px; background: #373240; border:1px solid #464050; padding: 0px; margin: 0 10px 0px 0px; font-weight: 300; border-radius: 50% 50%; text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 16px; }
+.userListMenu button:hover {color:#da5b83; border:1px solid #da5b83; }
+.userListMenu button:focus {background: #373240; color:#da5b83;} 
+.tabheading-flex {display:flex; flex-direction: row;}
+.userListMenu button {}*/

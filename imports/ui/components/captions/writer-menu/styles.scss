@@ -1,0 +1,92 @@
+@import "/imports/ui/stylesheets/variables/_all";
+@import "/imports/ui/components/modal/simple/styles";
+@import "/imports/ui/stylesheets/mixins/focus";
+
+.header {
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 2rem;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+
+  & label {font-size:14px; text-align:center;}
+}
+
+.captionsOptions {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.overlay {
+  @extend .overlay;
+}
+
+.modal {
+  @extend .modal;
+  padding: 1.5rem;
+  min-height: auto; max-width:35vw; 
+
+  @include mq($small-only) {
+    max-width:95vw;
+  }
+}
+
+.select {
+  @include elementFocus(var(--color-primary));
+
+  background-color: var(--color-border-bg);
+  border: var(--border-size) solid var(--color-border-bg);
+  border-radius: var(--border-size);
+  border-bottom: 0.1rem solid var(--color-border-bg);
+  color: var(--color-gray-label);
+  width: 90%;
+  height: 2.5rem; font-size:15px; border-radius:5px;
+  padding: 5px 10px;
+
+  &:hover {
+    outline:none !important; box-shadow:none !important;
+  }
+
+  &:focus {
+    outline:none !important; box-shadow:none !important;
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.3rem; margin-bottom:10px;
+  color: var(--color-white);
+  white-space: normal;
+
+  @include mq($small-only) {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+.startBtn {
+  align-self: center;
+  margin: 0;
+  width: 100px; border-radius:4px;
+  display: block;
+  margin-top:15px; font-weight:600; font-size:14px;
+  color: var(--color-white) !important;
+  background-color: var(--color-link) !important;
+
+  &:focus {
+    outline: none !important;
+  }
+
+  i {
+    color: #3c5764;
+  }
+}

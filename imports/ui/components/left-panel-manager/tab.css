@@ -1,0 +1,27 @@
+.srv_chat_tab .nav-item button {font-size: 13px;
+    font-size: 23px;  color: #949494;
+    font-weight: 500;
+    text-align: left;
+    padding: 0px 20px 0px 0px;
+    border: none;
+    background: none;}
+
+.srv_chat_tab .nav-item:nth-child(1) button:hover, .srv_chat_tab .nav-item:nth-child(1) button:focus  { color: #FB652F;}
+.srv_chat_tab .nav-item:nth-child(2) button:hover, .srv_chat_tab .nav-item:nth-child(2) button:focus  { color: #F9BA52;}
+.srv_chat_tab .nav-item:nth-child(3) button:hover, .srv_chat_tab .nav-item:nth-child(3) button:focus  { color: #FD512C;}
+.srv_chat_tab .nav-item:nth-child(4) button:hover, .srv_chat_tab .nav-item:nth-child(4) button:focus  { color: #D30F5C;}
+.srv_chat_tab .nav-item:nth-child(5) button:hover, .srv_chat_tab .nav-item:nth-child(5) button:focus  { color: #44ADA8;}
+.srv_chat_tab .nav-item:nth-child(6) button:hover, .srv_chat_tab .nav-item:nth-child(6) button:focus  { color: #C80B5C ;}
+.srv_chat_tab .nav-item:nth-child(7) button:hover, .srv_chat_tab .nav-item:nth-child(7) button:focus  { color: #FB652F ;}
+
+.srv_chat_tab .nav-item button:focus {outline: none; box-shadow: none;}
+.srv_chat_tab .nav-item button svg {}
+.closebuttontoogle {width: 30px; height: 30px; top:13px; position: absolute; right: 10px; color: #949494; z-index: 100;}
+.closebuttontoogle button {background: none !important; border:none; color: #949494 !important;}
+.closebuttontoogle button:focus, .closebuttontoogle button:hover {box-shadow: none !important; border:none; color: #c64b71 !important; }
+.closebuttontoogle button i {color: #949494; font-size: 14px;}
+.closebuttontoogle button:hover i, .closebuttontoogle button:focus i {color: #c64b71 !important;}
+
+.openbuttontoogle {width: 35px; height: 35px; margin-top: 6px; margin-left: 15px}
+.openbuttontoogle button {background: #282330; width: 35px; height: 35px; border-radius: 50% 50%;  border:1px solid #342e3e; color: #6b676f; font-size: 14px;}
+.openbuttontoogle button:focus, .openbuttontoogle button:hover {box-shadow: none !important; border:none; background: #c64b71; color: #FFF !important; } 
